@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HatHut22", "HatHut22\HatHut22.csproj", "{0FB68F8F-DD1E-41A6-B776-C02D2439BC93}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{89824CD2-FC40-4199-81C9-BB9BDCAF7C2D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0FB68F8F-DD1E-41A6-B776-C02D2439BC93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FB68F8F-DD1E-41A6-B776-C02D2439BC93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FB68F8F-DD1E-41A6-B776-C02D2439BC93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89824CD2-FC40-4199-81C9-BB9BDCAF7C2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89824CD2-FC40-4199-81C9-BB9BDCAF7C2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89824CD2-FC40-4199-81C9-BB9BDCAF7C2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89824CD2-FC40-4199-81C9-BB9BDCAF7C2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
