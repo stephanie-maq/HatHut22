@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using HatHut22.Models;
+using CVSITE21.Data;
 
 namespace HatHut22
 {
