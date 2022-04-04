@@ -20,8 +20,11 @@ namespace Data.Models
         public bool IsPaid { get; set; }
         public bool IsFinnished { get; set; }
         public string ImagePath { get; set; }
+        public int OrderCustomerId { get; set; }
         public Customer ownerOfOrder { get; set; }
+        public int OrderEmployeeId { get; set; }
         public Employee employeeMakingOrder { get; set; }
+        public int OrderProductId { get; set; }
         public Product productInOrder { get; set; }
 
     }

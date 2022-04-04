@@ -46,18 +46,18 @@ namespace CVSITE21.Data
 
             modelBuilder.Entity<Order>()
             .HasRequired<Customer>(s => s.ownerOfOrder)
-            .WithMany(g => g.OwnerOfOrder)
-            .HasForeignKey<int>(s => s.orderId);
+            .WithMany(g => g.OwnerOfOrders)
+            .HasForeignKey<int>(s => s.OrderCustomerId);
 
             modelBuilder.Entity<Order>()
             .HasRequired<Employee>(s => s.employeeMakingOrder)
             .WithMany(g => g.ActiveInOrders)
-            .HasForeignKey<int>(s => s.orderId);
+            .HasForeignKey<int>(s => s.OrderEmployeeId);
 
             modelBuilder.Entity<Order>()
             .HasRequired<Product>(s => s.productInOrder)
             .WithMany(g => g.ExistInOrders)
-            .HasForeignKey<int>(s => s.orderId);
+            .HasForeignKey<int>(s => s.OrderProductId);
         }
 
     }

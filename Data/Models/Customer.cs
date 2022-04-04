@@ -20,6 +20,6 @@ namespace Data.Models
         public string Notes { get; set; }
         [RegularExpression(@"^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$", ErrorMessage = "Phone numbers can only consist of numbers and area code.")]
         public int phoneNumber { get; set; }
-        public ICollection<Order> OwnerOfOrder { get; set; }
+        public ICollection<Order> OwnerOfOrders { get; set; }
     }
 }
