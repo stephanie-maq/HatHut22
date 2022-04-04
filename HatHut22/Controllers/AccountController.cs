@@ -163,7 +163,8 @@ namespace HatHut22.Controllers
                     {
                         var newEmployee = new Employee
                         {
-                            Email = model.Email
+                            Email = model.Email,
+                            Fullname = model.Fullname
                         };
                         context.Employees.Add(newEmployee);
                         await context.SaveChangesAsync();
