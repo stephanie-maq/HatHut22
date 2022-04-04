@@ -64,6 +64,8 @@ namespace HatHut22.Models
 
     public class RegisterViewModel
     {
+        [RegularExpression(@"^[A-Öa-ö ]+$", ErrorMessage = "Names can only have letters and space")]
+        public string Fullname { get; set; }
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
