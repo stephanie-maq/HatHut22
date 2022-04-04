@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Data.Models
 {
-    internal class Employee
+    public class Employee
     {
-        [Key] public string EmployeeId { get; set; }
+        [Key] public int EmployeeId { get; set; }
 
         public string Email { get; set; }
         [RegularExpression(@"^[A-Öa-ö ]+$", ErrorMessage = "Names can only have letters and space")]

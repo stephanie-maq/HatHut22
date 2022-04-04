@@ -133,6 +133,7 @@
     <Compile Include="ApplicationDBcontext.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeInOrder.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductsInOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
