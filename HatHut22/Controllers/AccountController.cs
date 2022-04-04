@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using HatHut22.Models;
 using CVSITE21.Data;
+using Data.Models;
 
 namespace HatHut22.Controllers
 {
@@ -157,7 +158,17 @@ namespace HatHut22.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
+                    using (var context = new ApplicationDbContext())
+                    {
+                        var newEmployee = new Employee
+                        {
+                            Email = model.Email
+                        };
+                        context.Employees.Add(newEmployee);
+                        await context.SaveChangesAsync();
+                    }
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

@@ -128,14 +128,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\CostumerInOrder.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="ApplicationDBcontext.cs" />
     <Compile Include="Models\Employee.cs" />
-    <Compile Include="Models\EmployeeInOrder.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\ProductsInOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

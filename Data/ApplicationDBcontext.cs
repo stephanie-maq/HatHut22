@@ -30,13 +30,11 @@ namespace CVSITE21.Data
         {
         }
 
-        //public DbSet<Product> Products { get; set; }
-        //public DbSet<Costumer> Costumers { get; set; }
-        //public DbSet<Employee> Employees { get; set; }
-        //public DbSet<Order> Orders { get; set; }
-        //public DbSet<CostumerInOrder> CostumerInOrder { get; set; }
-        //public DbSet<EmployeeInOrder> EmployeeInOrder { get; set;
-        //public DbSet<ProductsInOrder> ProductsInOrder { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Customer> Costumers { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Order> Orders { get; set; }
+       
 
         public static ApplicationDbContext Create()
         {
@@ -44,7 +42,22 @@ namespace CVSITE21.Data
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Order>()
+            .HasRequired<Customer>(s => s.ownerOfOrder)
+            .WithMany(g => g.OwnerOfOrder)
+            .HasForeignKey<int>(s => s.orderId);
+
+            modelBuilder.Entity<Order>()
+            .HasRequired<Employee>(s => s.employeeMakingOrder)
+            .WithMany(g => g.ActiveInOrders)
+            .HasForeignKey<int>(s => s.orderId);
+
+            modelBuilder.Entity<Order>()
+            .HasRequired<Product>(s => s.productInOrder)
+            .WithMany(g => g.ExistInOrders)
+            .HasForeignKey<int>(s => s.orderId);
         }
 
     }
