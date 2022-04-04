@@ -1,10 +1,15 @@
 ﻿using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Data.Models;
+using System.Linq;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace HatHut22.Models
+namespace CVSITE21.Data
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
@@ -25,9 +30,22 @@ namespace HatHut22.Models
         {
         }
 
+        //public DbSet<Product> Products { get; set; }
+        //public DbSet<Costumer> Costumers { get; set; }
+        //public DbSet<Employee> Employees { get; set; }
+        //public DbSet<Order> Orders { get; set; }
+        //public DbSet<CostumerInOrder> CostumerInOrder { get; set; }
+        //public DbSet<EmployeeInOrder> EmployeeInOrder { get; set;
+        //public DbSet<ProductsInOrder> ProductsInOrder { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            
+        }
+
     }
 }
