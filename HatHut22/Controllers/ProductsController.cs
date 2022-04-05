@@ -39,6 +39,7 @@ namespace HatHut22.Controllers
         // GET: Products/Create
         public ActionResult Create()
         {
+            ViewBag.Date= DateTime.Now;
             return View();
         }
 
