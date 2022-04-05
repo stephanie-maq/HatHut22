@@ -136,6 +136,10 @@
     <Compile Include="Migrations\202204050749338_AttributeFix.designer.cs">
       <DependentUpon>202204050749338_AttributeFix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204050837154_fixed typo.cs" />
+    <Compile Include="Migrations\202204050837154_fixed typo.designer.cs">
+      <DependentUpon>202204050837154_fixed typo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="ApplicationDBcontext.cs" />
@@ -184,6 +188,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204050749338_AttributeFix.resx">
       <DependentUpon>202204050749338_AttributeFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204050837154_fixed typo.resx">
+      <DependentUpon>202204050837154_fixed typo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
