@@ -2,6 +2,7 @@
     ViewBag.Title = "Home Page";
 }
 
+
 <div class="jumbotron">
     <h1>ASP.NET</h1>
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
@@ -29,3 +30,93 @@
         <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+
+<h2>Print invoice</h2>
+<div class="container-fluid">
+    <div id="ui-view" data-select2-id="ui-view">
+        <div>
+            <div class="card">
+                <div class="card-header">
+                    Invoice
+                    <strong>#BBB-10010110101938</strong>
+                    <a class="btn btn-sm btn-secondary float-right mr-1 d-print-none" href="#" onclick="javascript:window.print();" data-abc="true">
+                        <i class="fa fa-print"></i> Print
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-sm-4">
+                            <h6 class="mb-3">From:</h6>
+                            <div>Address---</div>
+                            <div>Företagsnamn---</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <h6 class="mb-3">To:</h6>
+                            <div>
+                                <strong>BBBootstrap.com</strong>
+                            </div>
+                            <div>Address--</div>
+                            <div>Email--</div>
+                            <div>
+                                Phone--/div>
+                            </div>
+                            <div class="col-sm-4">
+                                <h6 class="mb-3">Details:</h6>
+                                <div>Date--</div>
+                            </div>
+                        </div>
+                        <div class="table-responsive-sm">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Item--</th>
+                                        <th>Description--</th>
+                                        <th class="right">price--</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="left">Hatt</td>
+                                        <td class="left">SpecialProduct</td>
+                                        <td class="right">$999,00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        margin-bottom: 1.5rem
+    }
+
+    .card {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid #c8ced3;
+        border-radius: .25rem
+    }
+
+    .card-header:first-child {
+        border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0
+    }
+
+    .card-header {
+        padding: .75rem 1.25rem;
+        margin-bottom: 0;
+        background-color: #f0f3f5;
+        border-bottom: 1px solid #c8ced3
+    }
+</style>
