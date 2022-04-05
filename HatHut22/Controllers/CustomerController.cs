@@ -25,8 +25,8 @@ namespace HatHut22.Controllers
                 {
                     var customers = context.Customers.ToList();
                     ViewBag.ProfileId = username;
-                    
-                        return View(customers);
+
+                    return View(customers);
                 }
                 return View();
             }
@@ -52,18 +52,18 @@ namespace HatHut22.Controllers
         [HttpPost]
         public ActionResult Create(Customer customer)
         {
-        
-                using (var context = new ApplicationDbContext())
-                {
-                    if (ModelState.IsValid)
-                    {
-                        context.Customers.Add(customer);
-                        context.SaveChanges();
-                        return RedirectToAction("List");
-                    }
 
+            using (var context = new ApplicationDbContext())
+            {
+                if (ModelState.IsValid)
+                {
+                    context.Customers.Add(customer);
+                    context.SaveChanges();
                     return RedirectToAction("List");
                 }
+
+                return RedirectToAction("List");
+            }
 
         }
 
@@ -110,24 +110,18 @@ namespace HatHut22.Controllers
         }
 
         // POST: Customer/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
         {
-            try
+            using (var context = new ApplicationDbContext())
             {
-                using (var context = new ApplicationDbContext())
-                {
-                    Customer customer = context.Customers.Find(id);
-                    context.Customers.Remove(customer);
-                    context.SaveChanges();
-                    return RedirectToAction("List");
-                }
+                Customer customer = context.Customers.Find(id);
+                context.Customers.Remove(customer);
+                context.SaveChanges();
+                return RedirectToAction("List");
+            }
 
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }
