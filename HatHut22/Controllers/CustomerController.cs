@@ -18,17 +18,32 @@ namespace HatHut22.Controllers
         // GET: Customer
         public ActionResult List()
         {
-            return View();
+            using (var context = new ApplicationDbContext())
+            {
+                var username = User.Identity.Name;
+                if (username != null && username != "")
+                {
+                    var customers = context.Customers.ToList();
+                    ViewBag.ProfileId = username;
+                    
+                        return View(customers);
+                }
+                return View();
+            }
         }
 
         // GET: Customer/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            using (var context = new ApplicationDbContext())
+            {
+                Customer customer = context.Customers.Find(id);
+                return View(customer);
+            }
         }
 
         // GET: Customer/Create
-        public ActionResult CreateCustomers()
+        public ActionResult Create()
         {
             return View();
         }
@@ -75,9 +90,23 @@ namespace HatHut22.Controllers
         }
 
         // GET: Customer/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
+            using (var context = new ApplicationDbContext())
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                Customer customer = context.Customers.Find(id);
+                if (customer == null)
+                {
+                    return HttpNotFound();
+                }
+
+                return View(customer);
+            }
         }
 
         // POST: Customer/Delete/5
@@ -86,9 +115,14 @@ namespace HatHut22.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                using (var context = new ApplicationDbContext())
+                {
+                    Customer customer = context.Customers.Find(id);
+                    context.Customers.Remove(customer);
+                    context.SaveChanges();
+                    return RedirectToAction("List");
+                }
 
-                return RedirectToAction("Index");
             }
             catch
             {
