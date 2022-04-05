@@ -23,11 +23,12 @@ namespace Data.Models
         [Required(ErrorMessage = "Enter a date with the following format: mm/dd/yyyy")]
         [Display(Name = "Start Date")]
         public DateTime DateCreated { get; set; }
+        public int Price { get; set; }
 
         public ICollection<Order> ExistInOrders { get; set; }
 
         public bool IsStockProduct { get; set; }
         public bool IsSpecialProduct { get; set; }
-        public bool IsCostumerProduct { get; set; }
+        public bool IsCostumerMeasuredProduct { get; set; }
     }
 }
