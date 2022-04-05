@@ -18,8 +18,9 @@ namespace Data.Models
         [Display(Name = "Start Date")]
         public DateTime DateCreated { get; set; }
         public bool IsPaid { get; set; }
-        public bool IsFinnished { get; set; }
+        public bool IsHatFinnished { get; set; }
         public string ImagePath { get; set; }
+        public int Price { get; set; }
         public int OrderCustomerId { get; set; }
         public Customer ownerOfOrder { get; set; }
         public int OrderEmployeeId { get; set; }
