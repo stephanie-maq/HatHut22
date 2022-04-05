@@ -70,22 +70,39 @@ namespace HatHut22.Controllers
         // GET: Customer/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            using (var context = new ApplicationDbContext())
+            {
+               
+                
+                var customer = context.Customers.FirstOrDefault(x => x.CostumerId == id);
+                
+                    
+
+                    Customer customernullcheck = context.Customers.Find(id);
+                    if (customernullcheck == null)
+                    {
+                        return HttpNotFound();
+                    }
+
+                    return View(customer);
+                
+            }
         }
 
         // POST: Customer/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit([Bind(Include = "CostumerId,Email,Fullname,Address,Notes,phoneNumber")] Customer customer)
         {
-            try
+            using (var context = new ApplicationDbContext())
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    context.Entry(customer).State = EntityState.Modified;
+                    context.SaveChanges();
+                    return RedirectToAction("List");
+                }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
+                return View(customer);
             }
         }
 
