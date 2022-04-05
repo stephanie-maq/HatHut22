@@ -5,8 +5,6 @@ We shall not push commits directly to the Master branch. All development should 
 The Master branch should always have runnable code. It is our main source of truth. 
 
 ## How to add a feature
-1. Create Issue for the feature you want to work on
-2. Move Issue to the To-do column in project 'work', and assign yourself to it 
 3. Go to Visual Studio, and create a new branch
 3. Write code, stage changes, commit, and push branch 
 4. Make Pull Request from branch to Master
