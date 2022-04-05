@@ -1,7 +1,52 @@
-﻿@{
-    ViewBag.Title = "About";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
-
-<p>Use this area to provide additional information.</p>
+﻿<h2>Print invoice</h2>
+<div class="container-fluid">
+    <div id="ui-view" data-select2-id="ui-view">
+        <div>
+            <div class="card">
+                <div class="card-header">
+                    Invoice
+                    <a class="btn btn-sm btn-secondary float-right mr-1 d-print-none" href="#" onclick="javascript:window.print();" data-abc="true">
+                        <i class="fa fa-print"></i>Print
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4" style="margin-left: 10px;margin-right: 10px;">
+                        <div class="col-sm-4">
+                            <h6 class="mb-3">From:</h6>
+                            <div>Address---</div>
+                            <div>Företagsnamn---</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <h6 class="mb-3">To:</h6>
+                            <div>Address--</div>
+                            <div>Email--</div>
+                            <div>Phone--</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div>Details:</div>
+                            <div>Date--</div>
+                        </div>
+                        <div class="table-responsive-sm">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Item--</th>
+                                        <th>Description--</th>
+                                        <th class="right">price--</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="left">Hatt</td>
+                                        <td class="left">SpecialProduct</td>
+                                        <td class="right">$999,00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
