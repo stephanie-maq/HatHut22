@@ -132,6 +132,10 @@
     <Compile Include="Migrations\202204041604387_AddModels.designer.cs">
       <DependentUpon>202204041604387_AddModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204050749338_AttributeFix.cs" />
+    <Compile Include="Migrations\202204050749338_AttributeFix.designer.cs">
+      <DependentUpon>202204050749338_AttributeFix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="ApplicationDBcontext.cs" />
@@ -177,6 +181,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202204041604387_AddModels.resx">
       <DependentUpon>202204041604387_AddModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204050749338_AttributeFix.resx">
+      <DependentUpon>202204050749338_AttributeFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
