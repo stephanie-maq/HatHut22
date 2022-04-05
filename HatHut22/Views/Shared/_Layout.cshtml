@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Hattmakarna</title>
     @Styles.Render("~/Content/invoiceStyle")
+    @Styles.Render("~/Content/FontAwesome/fontawesome-free-6.0.0-web/css/all.css")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -23,10 +24,9 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Create product", "Create", "ProductsController")</li>
+                    <li>@Html.ActionLink("Create product", "Create", "Products")</li>
                     <li>@Html.ActionLink("TemporaryInvoicepage", "About", "Home")</li>
-                    <li>@Html.ActionLink("ListOfCustomer", "List", "Customer")</li>
-                    <li>@Html.ActionLink("Create Customer", "Create", "Customer")</li>
+                    <li>@Html.ActionLink("Customers", "List", "Customer")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
