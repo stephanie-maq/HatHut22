@@ -40,13 +40,19 @@ namespace HatHut22.Controllers
         }
 
         // GET: Orders/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-
-            ViewBag.OrderEmployeeId = new SelectList(db.Employees, "EmployeeId", "Email");
-            ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email");
-            ViewBag.OrderProductId = new SelectList(db.Products, "productId", "Title");
-            return View();
+            using (var context = new ApplicationDbContext())
+            {
+                var productID = id;
+                var products = context.Products.FirstOrDefault(x => x.productId == productID);
+                ViewBag.ProductPrice = products.Price;
+                ViewBag.ProductTitle = products.Title;
+                ViewBag.OrderEmployeeId = new SelectList(db.Employees, "EmployeeId", "Email");
+                ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email");
+                ViewBag.OrderProductId = productID;
+                return View();
+            }
         }
 
         // POST: Orders/Create
