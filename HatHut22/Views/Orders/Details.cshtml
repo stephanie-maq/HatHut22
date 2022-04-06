@@ -66,13 +66,6 @@
             @Html.DisplayFor(model => model.IsHatFinnished)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ImagePath)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ImagePath)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Price)
@@ -82,6 +75,26 @@
             @Html.DisplayFor(model => model.Price)
         </dd>
 
+        <div class="col">
+            <center>
+
+                @if (Model.ImagePath == null || Model.ImagePath != null)
+                {
+                    var imgurl = "";
+                    if (Model.ImagePath == null)
+                    {
+                        <p>no images</p>
+                    }
+                    else
+                    {
+                        imgurl = "/Images/" + Model.ImagePath;
+                        <img src="@imgurl" width="100px" />
+
+                    }
+
+                }
+            </center>
+        </div>
     </dl>
 </div>
 <p>
