@@ -137,6 +137,19 @@ namespace HatHut22.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        public ActionResult Invoice(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Order order = db.Orders.Find(id);
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
+            return View(order);
+        }
 
         protected override void Dispose(bool disposing)
         {
