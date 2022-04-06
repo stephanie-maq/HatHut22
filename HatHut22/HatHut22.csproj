@@ -2090,6 +2090,7 @@
     <Content Include="Views\Orders\Index.cshtml" />
     <Content Include="Views\Customer\Delete.cshtml" />
     <Content Include="Views\Image\Create.cshtml" />
+    <Content Include="Views\Orders\Invoice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
