@@ -1973,6 +1973,7 @@
     <Content Include="Content\FontAwesome\fontawesome-free-6.0.0-web\svgs\solid\yin-yang.svg" />
     <Content Include="Content\FontAwesome\fontawesome-free-6.0.0-web\svgs\solid\z.svg" />
     <Content Include="Content\invoiceStyle.css" />
+    <Content Include="Content\productStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
