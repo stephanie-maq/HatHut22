@@ -42,6 +42,7 @@ namespace HatHut22.Controllers
         // GET: Orders/Create
         public ActionResult Create()
         {
+
             ViewBag.OrderEmployeeId = new SelectList(db.Employees, "EmployeeId", "Email");
             ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email");
             ViewBag.OrderProductId = new SelectList(db.Products, "productId", "Title");
