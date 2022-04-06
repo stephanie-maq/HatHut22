@@ -27,7 +27,7 @@ namespace HatHut22.Controllers
                 using (var context = new ApplicationDbContext())
                 {
 
-
+                    var order = context.Orders.First(a => a.orderId == model.CurrentOrderID);
 
                     var newImg = new SaveImage()
                     { };
@@ -38,17 +38,17 @@ namespace HatHut22.Controllers
 
                     newImg.ImagePath = filename;
                     var filenameraw = filename.ToString();
-                    var order = context.Orders.First(a => a.orderId == newImg.CurrentOrderID);
+                   
                     
-                    var orderid= newImg.CurrentOrderID;
+                    var orderid= order.orderId;
 
                     ViewBag.CurrentOrderID = orderid;
                     order.ImagePath = filenameraw;
                     context.SaveChanges();
-
+                    var redirectUrl = "~/Orders/Details/" + orderid;
+                    return Redirect(redirectUrl);
                 }
 
-                return Redirect("~/Orders/details/" + (string)ViewBag.CurrentOrderID);
             }
             catch
             {
