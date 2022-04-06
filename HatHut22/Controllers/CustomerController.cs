@@ -10,6 +10,7 @@ using CVSITE21.Data;
 using Data.Migrations;
 using Data.Models;
 using Microsoft.AspNet.Identity;
+using HatHut22.Models;
 
 namespace HatHut22.Controllers
 {
@@ -37,8 +38,30 @@ namespace HatHut22.Controllers
         {
             using (var context = new ApplicationDbContext())
             {
-                Customer customer = context.Customers.Find(id);
-                return View(customer);
+                //Customer customer = context.Customers.inFind(id);
+                var customer = context.Customers.Include(x => x.OwnerOfOrders).Where(x => x.CostumerId == id).FirstOrDefault();
+                var orders = customer.OwnerOfOrders.ToList();
+                
+
+                var tempCustomerProfile = new TempCustomer();
+                tempCustomerProfile.CostumerId = customer.CostumerId;
+                tempCustomerProfile.Email = customer.Email;
+                tempCustomerProfile.Fullname = customer.Fullname;
+                tempCustomerProfile.Address = customer.Address;
+                tempCustomerProfile.Notes = customer.Notes;
+                tempCustomerProfile.phoneNumber = customer.phoneNumber;
+
+
+                List<string> userOrders = new List<string>();
+                foreach (var item in orders)
+                {
+                    userOrders.Add(item.orderId.ToString());
+
+                }
+                tempCustomerProfile.OwnerOfOrders = userOrders;
+                
+
+                return View(tempCustomerProfile);
             }
         }
 

@@ -1,4 +1,4 @@
-﻿@model Data.Models.Customer
+﻿@model HatHut22.Models.TempCustomer
 
 @{
     ViewBag.Title = "Details";
@@ -87,7 +87,7 @@
         </div>
     </div>
 
-    @*<div class="row">
+    <div class="row">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
@@ -105,23 +105,21 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            @if (Model.OwnerOfOrders.Count == 0)
-                            {
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.OwnerOfOrders, "Order IDs", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("Customer in Order", new SelectList(Model.OwnerOfOrders, "Title"))
 
-                                <p>Customer has not made any orders.</p>
-
-                            }
-                            else
-                            {
-                                @Html.DropDownList("People in project", new SelectList(Model.OwnerOfOrders, "Title"))
-                            }
+                                    @Html.ValidationMessageFor(model => model.OwnerOfOrders, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>*@
+        </div>
 
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
