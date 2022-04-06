@@ -1,95 +1,8 @@
 ﻿@model Data.Models.Order
 
-@{
-    ViewBag.Title = "Invoice";
-}
-
 <h2>Invoice</h2>
 
-<div>
-    <h4>Order</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.employeeMakingOrder.Email)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.employeeMakingOrder.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ownerOfOrder.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ownerOfOrder.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.productInOrder.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.productInOrder.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateCreated)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsPaid)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsPaid)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsHatFinnished)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsHatFinnished)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ImagePath)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ImagePath)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.orderId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
-
-<h2>Print invoice</h2>
 <div class="container-fluid">
     <div id="ui-view" data-select2-id="ui-view">
         <div>
@@ -105,32 +18,32 @@
                         <div class="col-sm-4">
                             <h6 class="mb-3">From:</h6>
                             <div>Address---</div>
-                            <div>Företagsnamn---</div>
+                            <div>Hattmakarna</div>
                         </div>
                         <div class="col-sm-4">
                             <h6 class="mb-3">To:</h6>
-                            <div>Address--</div>
-                            <div>Email--</div>
-                            <div>Phone--</div>
+                            <div>@ViewBag.CustomerAddress</div>
+                            <div>@ViewBag.CustomerEmail</div>
+                            <div>@ViewBag.CustomerPhone</div>
                         </div>
                         <div class="col-sm-4">
-                            <div>Details:</div>
-                            <div>Date--</div>
+                            <div>@Html.DisplayFor(model => model.Description)</div>
+                            <div>@Html.DisplayFor(model => model.DateCreated)</div>
                         </div>
                         <div class="table-responsive-sm">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Item--</th>
-                                        <th>Description--</th>
-                                        <th class="right">price--</th>
+                                        <th>Item</th>
+                                        <th>Description</th>
+                                        <th class="right">price</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="left">Hatt</td>
-                                        <td class="left">SpecialProduct</td>
-                                        <td class="right">@Html.DisplayFor(model => model.Price)</td>
+                                        <td class="left">@ViewBag.ProductTitle</td>
+                                        <td class="left">@ViewBag.ProductDescription</td>
+                                        <td class="right">@ViewBag.ProductPrice</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -141,3 +54,7 @@
         </div>
     </div>
 </div>
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
