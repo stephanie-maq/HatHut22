@@ -9,6 +9,7 @@ namespace Data.Models
 {
     public class SaveImage
     {
+        public int CurrentOrderID { get; set; }
         public HttpPostedFileBase Image { get; set; }
         public string ImagePath { get; set; }
     }

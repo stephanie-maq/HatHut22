@@ -14,6 +14,7 @@ namespace HatHut22.Controllers
         // GET: Image/Create
         public ActionResult Create(int? id)
         {
+            ViewBag.CurrentOrderID = id;
             return View();
         }
 
@@ -37,17 +38,17 @@ namespace HatHut22.Controllers
 
                     newImg.ImagePath = filename;
                     var filenameraw = filename.ToString();
-                    var username = System.Web.HttpContext.Current.User.Identity.Name;
-                    var user = context.Profiles.First(a => a.UserId == username);
+                    var order = context.Orders.First(a => a.orderId == newImg.CurrentOrderID);
+                    
+                    var orderid= newImg.CurrentOrderID;
 
-
-
-                    user.ImagePath = filenameraw;
+                    ViewBag.CurrentOrderID = orderid;
+                    order.ImagePath = filenameraw;
                     context.SaveChanges();
 
                 }
 
-                return Redirect("~/Orders/details/"+model.);
+                return Redirect("~/Orders/details/" + (string)ViewBag.CurrentOrderID);
             }
             catch
             {
