@@ -4,11 +4,14 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<link href="@Url.Content("~/Content/productList.css")" rel="stylesheet" type="text/css" />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h2>Products</h2>
+
+<div class="buttonMargin">
+    <a href="~/Products/Create" class="btn btn-primary btn-lg"><i class="fa-solid fa-circle-plus"></i>Add Product</a>
+</div>
+
 <table class="table">
     <tr>
         <th>
@@ -24,13 +27,13 @@
             @Html.DisplayNameFor(model => model.Price)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsStockProduct)
+            @Html.DisplayName("Stock Product")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsSpecialProduct)
+            @Html.DisplayName("Customized Stock Product")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsCostumerMeasuredProduct)
+            @Html.DisplayName("Custom-made Product")
         </th>
         <th></th>
     </tr>
