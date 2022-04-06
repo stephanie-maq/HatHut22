@@ -143,12 +143,26 @@ namespace HatHut22.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Orders.Find(id);
-            if (order == null)
+            using (var context = new ApplicationDbContext())
             {
-                return HttpNotFound();
-            }
-            return View(order);
+                var order = db.Orders.Find(id);
+                var productID = order.OrderProductId;
+                var customerId = order.OrderCustomerId;
+                var product = context.Products.FirstOrDefault(x => x.productId == productID);
+                var customer = context.Customers.FirstOrDefault(x => x.CostumerId == customerId);
+                ViewBag.ProductPrice = product.Price;
+                ViewBag.ProductTitle = product.Title;
+                ViewBag.ProductDescription = product.Description;
+                ViewBag.CustomerAddress = customer.Address;
+                ViewBag.CustomerEmail = customer.Email;
+                ViewBag.CustomerName = customer.Fullname;
+                ViewBag.CustomerPhone = customer.phoneNumber;
+
+                //ViewBag.OrderEmployeeId = new SelectList(db.Employees, "EmployeeId", "Email");
+                //ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email");
+                //ViewBag.OrderProductId = productID;
+                return View(order);
+            }            
         }
 
         protected override void Dispose(bool disposing)
