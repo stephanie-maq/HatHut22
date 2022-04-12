@@ -14,6 +14,7 @@ using HatHut22.Models;
 
 namespace HatHut22.Controllers
 {
+    [Authorize]
     public class CustomerController : Controller
     {
         // GET: Customer

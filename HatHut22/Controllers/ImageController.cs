@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace HatHut22.Controllers
 {
+    [Authorize]
     public class ImageController : Controller
     {
 

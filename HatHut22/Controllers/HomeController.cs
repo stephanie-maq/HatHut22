@@ -26,12 +26,5 @@ namespace HatHut22.Controllers
 
             return View();
         }
-        public ActionResult Customers()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
     }
 }
