@@ -11,6 +11,7 @@ using Data.Models;
 
 namespace HatHut22.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
