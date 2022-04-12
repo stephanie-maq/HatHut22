@@ -70,6 +70,7 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.productId }) |
-    @Html.ActionLink("Create Order", "Create", "Orders", new { id = Model.productId }, null)
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Create Copy", "CreateCopy", new { id = Model.productId }) |
+    @Html.ActionLink("Create Order", "Create", "Orders", new { id = Model.productId }, null) |
+    @Html.ActionLink("Back to List", "Index") |
 </p>
