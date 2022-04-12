@@ -7,6 +7,20 @@
 <h2>List</h2>
 
 <a href="~/Customer/Create" class="btn btn-primary btn-lg"><i class="fa-solid fa-circle-plus"></i> Ny kund</a>
+<p>
+    @using (@Html.BeginForm("List", "Customer", FormMethod.Get))
+    {
+        <b>Search by name:</b>
+
+        <div>
+            @Html.TextBox("search")
+            <input class="btn btn-default" type="submit" value="search" />
+        </div>
+
+
+    }
+
+</p>
 <table class="table">
     <tr>
         <th>
