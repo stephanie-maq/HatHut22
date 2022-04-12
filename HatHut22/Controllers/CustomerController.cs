@@ -17,6 +17,8 @@ namespace HatHut22.Controllers
     [Authorize]
     public class CustomerController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         // GET: Customer
         public ActionResult List()
         {
@@ -65,6 +67,35 @@ namespace HatHut22.Controllers
                 return View(tempCustomerProfile);
             }
         }
+
+        public ActionResult OrderSummary(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            using (var context = new ApplicationDbContext())
+            {
+                var order = db.Orders.Find(id);
+                var productID = order.OrderProductId;
+                var customerId = order.OrderCustomerId;
+                var product = context.Products.FirstOrDefault(x => x.productId == productID);
+                var customer = context.Customers.FirstOrDefault(x => x.CostumerId == customerId);
+                ViewBag.ProductPrice = product.Price;
+                ViewBag.ProductTitle = product.Title;
+                ViewBag.ProductDescription = product.Description;
+                ViewBag.CustomerAddress = customer.Address;
+                ViewBag.CustomerEmail = customer.Email;
+                ViewBag.CustomerName = customer.Fullname;
+                ViewBag.CustomerPhone = customer.phoneNumber;
+
+                //ViewBag.OrderEmployeeId = new SelectList(db.Employees, "EmployeeId", "Email");
+                //ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email");
+                //ViewBag.OrderProductId = productID;
+                return View(order);
+            }
+        }
+
 
         // GET: Customer/Create
         public ActionResult Create()
