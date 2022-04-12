@@ -52,7 +52,7 @@ namespace CVSITE21.Data
             modelBuilder.Entity<Order>()
             .HasRequired<Employee>(s => s.employeeMakingOrder)
             .WithMany(g => g.ActiveInOrders)
-            .HasForeignKey<int>(s => s.OrderEmployeeId);
+            .HasForeignKey<int?>(s => s.OrderEmployeeId);
 
             modelBuilder.Entity<Order>()
             .HasRequired<Product>(s => s.productInOrder)
