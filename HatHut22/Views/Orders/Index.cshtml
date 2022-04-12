@@ -61,13 +61,13 @@
             {
 
                 <td>
-                    <input type="button" class="btn btn-default" value="Join project" onclick="location.href='@Url.Action("AddEmployeeToOrder", "Orders", new { id = item.orderId })'" />
+                    <input type="button" class="btn btn-default" value="Ta order" onclick="location.href='@Url.Action("AddEmployeeToOrder", "Orders", new { id = item.orderId })'" />
                 </td>
             }
             else
             {
                 <td>
-                    <input type="button" class="btn btn-default" value="Leave project" onclick="location.href='@Url.Action("RemoveEmployeeToOrder", "Orders", new { id = item.orderId })'" />
+                    <input type="button" class="btn btn-default" value="Lämna order" onclick="location.href='@Url.Action("RemoveEmployeeToOrder", "Orders", new { id = item.orderId })'" />
                 </td>
             }
     <td>
