@@ -10,9 +10,10 @@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-@if (Request.IsAuthenticated)
-{
-    <body>
+
+<body>
+    @if (Request.IsAuthenticated)
+    {
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -47,11 +48,9 @@
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", required: false)
-    </body>
-}
-else
-{
-    <body>
+    }
+    else
+    {
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -82,6 +81,7 @@ else
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", required: false)
+    }
     </body>
-}
+
 </html>

@@ -2093,6 +2093,7 @@
     <Content Include="Views\Customer\Delete.cshtml" />
     <Content Include="Views\Image\Create.cshtml" />
     <Content Include="Views\Orders\Invoice.cshtml" />
+    <Content Include="Views\Account\WrongCode.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
