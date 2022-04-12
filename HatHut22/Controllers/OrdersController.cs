@@ -74,7 +74,7 @@ namespace HatHut22.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "orderId,Description,DateCreated,IsPaid,IsHatFinnished,ImagePath,Price,OrderCustomerId,OrderEmployeeId,OrderProductId")] Order order)
+        public ActionResult Create([Bind(Include = "orderId,Description,DateCreated,IsPaid,IsHatFinnished,ImagePath,Price,Material,OrderCustomerId,OrderEmployeeId,OrderProductId")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -112,7 +112,7 @@ namespace HatHut22.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "orderId,Description,DateCreated,IsPaid,IsHatFinnished,ImagePath,Price,OrderCustomerId,OrderEmployeeId,OrderProductId")] Order order)
+        public ActionResult Edit([Bind(Include = "orderId,Description,DateCreated,IsPaid,IsHatFinnished,ImagePath,Price,Material,OrderCustomerId,OrderEmployeeId,OrderProductId")] Order order)
         {
             if (ModelState.IsValid)
             {

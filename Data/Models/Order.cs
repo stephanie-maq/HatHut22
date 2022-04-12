@@ -23,6 +23,7 @@ namespace Data.Models
         public bool IsHatFinnished { get; set; }
         public string ImagePath { get; set; }
         public int Price { get; set; }
+        public string Material { get; set; }
         public int OrderCustomerId { get; set; }
         [Display(Name = "Kund")]
         public Customer ownerOfOrder { get; set; }
