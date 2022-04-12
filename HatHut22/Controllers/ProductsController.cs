@@ -43,6 +43,21 @@ namespace HatHut22.Controllers
             ViewBag.Date= DateTime.Now;
             return View();
         }
+        public ActionResult CreateCopy(int id)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                ModelState.Clear();
+                Product copyProduct = new Product();
+                ViewBag.Date = DateTime.Now;
+                var productID = id;
+                var products = context.Products.FirstOrDefault(x => x.productId == productID);
+                copyProduct.Price = products.Price;
+                copyProduct.Title = products.Title;
+                copyProduct.Description = products.Description;
+                return View(copyProduct);
+            }
+        }
 
         // POST: Products/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
