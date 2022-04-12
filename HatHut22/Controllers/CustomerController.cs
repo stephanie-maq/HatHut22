@@ -18,20 +18,24 @@ namespace HatHut22.Controllers
     public class CustomerController : Controller
     {
         // GET: Customer
-        public ActionResult List()
+        public ActionResult List(string search)
         {
             using (var context = new ApplicationDbContext())
             {
-                var username = User.Identity.Name;
-                if (username != null && username != "")
+                if (search == null || search == "")
                 {
                     var customers = context.Customers.ToList();
-                    ViewBag.ProfileId = username;
 
                     return View(customers);
                 }
-                return View();
+                if (search != null && search != "")
+                {
+                    return View(context.Customers.Where(x => x.Fullname.ToString().ToLower().Contains(search.ToLower().ToString())).ToList());
+                }
+                return View(context.Customers);
             }
+            
+            
         }
 
         // GET: Customer/Details/5
