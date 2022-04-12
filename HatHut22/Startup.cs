@@ -2,7 +2,6 @@
 using Data.Models;
 using Microsoft.Owin;
 using Owin;
-using System.Linq;
 
 [assembly: OwinStartupAttribute(typeof(HatHut22.Startup))]
 namespace HatHut22
@@ -13,10 +12,10 @@ namespace HatHut22
         {
             using (var context = new ApplicationDbContext())
             {
-                var namn = "ingen";
-                var DumpProfile = context.Employees.FirstOrDefault(x => x.Fullname == namn);
+                var id = 0;
+                var DumpProfile = context.Employees.Find(id);
                 if (DumpProfile == null) 
-                    {
+                    { 
                         Employee employee = new Employee();
                         employee.EmployeeId = 0;
                         employee.Fullname = "ingen";
