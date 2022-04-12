@@ -179,7 +179,7 @@ namespace HatHut22.Controllers
             }            
         }
 
-        public ActionResult PrintOrder(int? id)
+        public ActionResult OrderSummary(int? id)
         {
             if (id == null)
             {
