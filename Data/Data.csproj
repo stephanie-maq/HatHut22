@@ -145,6 +145,10 @@
     <Compile Include="Migrations\202204120956242_fix boolean and connection.designer.cs">
       <DependentUpon>202204120956242_fix boolean and connection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204121603307_Order add material.cs" />
+    <Compile Include="Migrations\202204121603307_Order add material.designer.cs">
+      <DependentUpon>202204121603307_Order add material.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="ApplicationDBcontext.cs" />
@@ -171,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204120956242_fix boolean and connection.resx">
       <DependentUpon>202204120956242_fix boolean and connection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204121603307_Order add material.resx">
+      <DependentUpon>202204121603307_Order add material.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
