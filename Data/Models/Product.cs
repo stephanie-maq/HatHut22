@@ -26,9 +26,11 @@ namespace Data.Models
         public int Price { get; set; }
 
         public ICollection<Order> ExistInOrders { get; set; }
-
+        [Display(Name = "Lagerförd produkt")]
         public bool IsStockProduct { get; set; }
+        [Display(Name = "Special produkt")]
         public bool IsSpecialProduct { get; set; }
+        [Display(Name = "Skräddarsydd produkt")]
         public bool IsCostumerMeasuredProduct { get; set; }
     }
 }

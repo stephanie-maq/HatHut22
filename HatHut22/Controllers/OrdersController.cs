@@ -18,8 +18,21 @@ namespace HatHut22.Controllers
         // GET: Orders
         public ActionResult Index()
         {
-            var orders = db.Orders.Include(o => o.employeeMakingOrder).Include(o => o.ownerOfOrder).Include(o => o.productInOrder);
-            return View(orders.ToList());
+            using (var context = new ApplicationDbContext()) { 
+                var user = System.Web.HttpContext.Current.User.Identity.Name;
+                var employee = context.Employees.Include(x => x.ActiveInOrders).Where(x => x.Email == user).FirstOrDefault();
+                var ordersList = employee.ActiveInOrders.ToList();
+
+                List<string> listOfOrderId = new List<string>();
+                foreach (var item in ordersList)
+                {
+                    listOfOrderId.Add(item.orderId.ToString());
+
+                }
+                ViewBag.Orders = listOfOrderId;
+                var orders = db.Orders.Include(o => o.employeeMakingOrder).Include(o => o.ownerOfOrder).Include(o => o.productInOrder);
+                return View(orders.ToList());
+            }
         }
 // skapa en order lägg till produkt i varukort
        
@@ -172,6 +185,36 @@ namespace HatHut22.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public ActionResult AddEmployeeToOrder(int id)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                string username = System.Web.HttpContext.Current.User.Identity.Name;
+                Employee wantedEmployee = context.Employees.Where(x => x.Email == username).FirstOrDefault();
+                Order wantedOrder = context.Orders.Where(x => x.orderId == id).FirstOrDefault();
+                wantedOrder.employeeMakingOrder = wantedEmployee;
+                wantedOrder.OrderEmployeeId = wantedEmployee.EmployeeId;
+                context.Entry(wantedOrder).State = EntityState.Modified;
+                context.SaveChanges();
+                return RedirectToAction("Index");
+                
+            }
+        }
+
+        public ActionResult RemoveEmployeeToOrder(int id)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                string username = System.Web.HttpContext.Current.User.Identity.Name;
+                Employee wantedEmployee = context.Employees.Where(x => x.Fullname == "ingen").FirstOrDefault();
+                Order wantedOrder = context.Orders.Where(x => x.orderId == id).FirstOrDefault();
+                wantedOrder.employeeMakingOrder = wantedEmployee;
+                wantedOrder.OrderEmployeeId = wantedEmployee.EmployeeId;
+                context.Entry(wantedOrder).State = EntityState.Modified;
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
     }
 }

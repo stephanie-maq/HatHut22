@@ -59,6 +59,20 @@
     <td>
         @Html.DisplayFor(modelItem => item.employeeMakingOrder.Fullname)
     </td>
+    
+            @if (!ViewBag.Orders.Contains(item.orderId.ToString()))
+            {
+
+                <td>
+                    <input type="button" class="btn btn-default" value="Join project" onclick="location.href='@Url.Action("AddEmployeeToOrder", "Orders", new { id = item.orderId })'" />
+                </td>
+            }
+            else
+            {
+                <td>
+                    <input type="button" class="btn btn-default" value="Leave project" onclick="location.href='@Url.Action("RemoveEmployeeToOrder", "Orders", new { id = item.orderId })'" />
+                </td>
+            }
     <td>
         @Html.ActionLink("Edit", "Edit", new { id = item.orderId }) |
         @Html.ActionLink("Details", "Details", new { id = item.orderId }) |
