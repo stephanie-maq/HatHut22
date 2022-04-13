@@ -62,7 +62,6 @@ namespace HatHut22.Controllers
                 var products = context.Products.FirstOrDefault(x => x.productId == productID);
                 ViewBag.ProductPrice = products.Price;
                 ViewBag.ProductTitle = products.Title;
-                ViewBag.OrderEmployeeId = new SelectList(db.Employees, "EmployeeId", "Email");
                 ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email");
                 ViewBag.OrderProductId = productID;
                 return View();
@@ -74,19 +73,27 @@ namespace HatHut22.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "orderId,Description,DateCreated,IsPaid,IsHatFinnished,ImagePath,Price,Material,OrderCustomerId,OrderEmployeeId,OrderProductId")] Order order)
+        public ActionResult Create([Bind(Include = "orderId,Description,DateCreated,IsPaid,IsHatFinnished,IsSent,HaveMaterials,ImagePath,Price,Material,OrderCustomerId,OrderProductId")] Order order)
         {
-            if (ModelState.IsValid)
+            using (var context = new ApplicationDbContext())
             {
-                db.Orders.Add(order);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                var namn = "ingen";
+                Employee defaultEmploye = context.Employees.Where(x=>x.Fullname == namn).FirstOrDefault();
+                order.employeeMakingOrder = defaultEmploye;
+                order.OrderEmployeeId = defaultEmploye.EmployeeId;
 
-            ViewBag.OrderEmployeeId = new SelectList(db.Employees, "EmployeeId", "Email", order.OrderEmployeeId);
-            ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email", order.OrderCustomerId);
-            ViewBag.OrderProductId = new SelectList(db.Products, "productId", "Title", order.OrderProductId);
-            return View(order);
+                if (ModelState.IsValid)
+                {
+                    db.Orders.Add(order);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                ViewBag.OrderEmployeeId = new SelectList(db.Employees, "EmployeeId", "Email", order.OrderEmployeeId);
+                ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email", order.OrderCustomerId);
+                ViewBag.OrderProductId = new SelectList(db.Products, "productId", "Title", order.OrderProductId);
+                return View(order); 
+            }
         }
 
         // GET: Orders/Edit/5
@@ -112,18 +119,24 @@ namespace HatHut22.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "orderId,Description,DateCreated,IsPaid,IsHatFinnished,ImagePath,Price,Material,OrderCustomerId,OrderEmployeeId,OrderProductId")] Order order)
+        public ActionResult Edit([Bind(Include = "orderId,Description,DateCreated,IsPaid,IsHatFinnished,IsSent,HaveMaterials,ImagePath,Price,Material,OrderCustomerId,OrderProductId")] Order order)
         {
-            if (ModelState.IsValid)
+            using (var context = new ApplicationDbContext())
             {
-                db.Entry(order).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+                Order orderBeforeEdit = context.Orders.Find(order.orderId);
+                order.OrderEmployeeId = orderBeforeEdit.OrderEmployeeId;
+                if (ModelState.IsValid)
+                {
+                    db.Entry(order).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                ViewBag.OrderEmployeeId = new SelectList(db.Employees, "EmployeeId", "Email", order.OrderEmployeeId);
+                ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email", order.OrderCustomerId);
+                ViewBag.OrderProductId = new SelectList(db.Products, "productId", "Title", order.OrderProductId);
+                return View(order);
             }
-            ViewBag.OrderEmployeeId = new SelectList(db.Employees, "EmployeeId", "Email", order.OrderEmployeeId);
-            ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email", order.OrderCustomerId);
-            ViewBag.OrderProductId = new SelectList(db.Products, "productId", "Title", order.OrderProductId);
-            return View(order);
         }
 
         // GET: Orders/Delete/5
@@ -179,6 +192,34 @@ namespace HatHut22.Controllers
             }            
         }
 
+        public ActionResult SpecificOrderSummary(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var totalPrice = 0;
+            using (var context = new ApplicationDbContext())
+            {
+                var orderList = db.Orders.Where(x => x.orderId == id);
+                foreach (var item in orderList)
+                {
+                    if (!item.IsPaid)
+                    {
+                        totalPrice += item.Price;
+                        
+
+                    }                  
+                }
+
+                ViewBag.OrderList = orderList;
+                ViewBag.TotalPrice = totalPrice;
+                //ViewBag.OrderEmployeeId = new SelectList(db.Employees, "EmployeeId", "Email");
+                //ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email");
+                //ViewBag.OrderProductId = productID;
+                return View();
+            }
+        }
         public ActionResult OrderSummary(int? id)
         {
             if (id == null)
@@ -188,15 +229,15 @@ namespace HatHut22.Controllers
             var totalPrice = 0;
             using (var context = new ApplicationDbContext())
             {
-                var orderList = db.Orders.Where(x => x.OrderCustomerId == id).Where(x => x.IsPaid == false);
+                var orderList = db.Orders.Where(x => x.OrderCustomerId == id);
                 foreach (var item in orderList)
                 {
                     if (!item.IsPaid)
                     {
                         totalPrice += item.Price;
-                        
 
-                    }                  
+
+                    }
                 }
 
                 ViewBag.OrderList = orderList;

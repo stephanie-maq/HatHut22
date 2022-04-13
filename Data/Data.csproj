@@ -149,6 +149,14 @@
     <Compile Include="Migrations\202204121603307_Order add material.designer.cs">
       <DependentUpon>202204121603307_Order add material.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204131250255_boolean added to order.cs" />
+    <Compile Include="Migrations\202204131250255_boolean added to order.designer.cs">
+      <DependentUpon>202204131250255_boolean added to order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204131324063_order create&amp;edit fix.cs" />
+    <Compile Include="Migrations\202204131324063_order create&amp;edit fix.designer.cs">
+      <DependentUpon>202204131324063_order create&amp;edit fix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="ApplicationDBcontext.cs" />
@@ -178,6 +186,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204121603307_Order add material.resx">
       <DependentUpon>202204121603307_Order add material.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204131250255_boolean added to order.resx">
+      <DependentUpon>202204131250255_boolean added to order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204131324063_order create&amp;edit fix.resx">
+      <DependentUpon>202204131324063_order create&amp;edit fix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
