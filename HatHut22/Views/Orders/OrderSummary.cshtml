@@ -8,7 +8,6 @@
         <div>
             <div class="card">
                 <div class="card-header">
-                    Invoice
                     <a class="btn btn-sm btn-secondary float-right mr-1 d-print-none" href="#" onclick="javascript:window.print();" data-abc="true">
                         <i class="fa fa-print"></i>Print
                     </a>
@@ -40,12 +39,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="left">@ViewBag.ProductTitle</td>
-                                        <td class="left">@ViewBag.ProductDescription</td>
-                                        <td class="right">@ViewBag.ProductPrice</td>
-                                    </tr>
-                                </tbody>
+                                    @foreach (var item in ViewBag.OrderList)
+                                    {
+                                        <tr>
+
+                                            <td class="left">@item.orderId</td>
+                                            <td class="left">@item.Description</td>
+                                            <td class="right">@item.Price</td>
+                                            
+                                        </tr>
+                                    }
+                                    </tbody>
                             </table>
                         </div>
                     </div>
@@ -58,3 +62,11 @@
 <p>
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+@foreach (var item in ViewBag.OrderList)
+{
+    <span> @item.Description </span>
+    <span> @item.Price </span>
+
+}
+<h1>@ViewBag.TotalPrice</h1>
