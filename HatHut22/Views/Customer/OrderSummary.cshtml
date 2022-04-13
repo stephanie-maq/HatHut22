@@ -1,0 +1,69 @@
+﻿@model Data.Models.Customer
+
+<h2>Order Summary</h2>
+
+
+<div class="container-fluid">
+    <div id="ui-view" data-select2-id="ui-view">
+        <div>
+            <div class="card">
+                <div class="card-header">
+                    <a class="btn btn-sm btn-secondary float-right mr-1 d-print-none" href="#" onclick="javascript:window.print();" data-abc="true">
+                        <i class="fa fa-print"></i>Print
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4" style="margin-left: 10px;margin-right: 10px;">
+                        <div class="col-sm-4">
+        
+                        </div>
+                        <div class="col-sm-4">
+                            <h6 class="mb-3">To:</h6>
+                            <div>@ViewBag.CustomerAddress</div>
+                            <div>@ViewBag.CustomerEmail</div>
+                            <div>@ViewBag.CustomerPhone</div>
+                        </div>
+                        <div class="col-sm-4">
+                          
+                        </div>
+                        <div class="table-responsive-sm">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Description</th>
+                                        <th class="right">price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in ViewBag.OrderList)
+                                    {
+                                        <tr>
+
+                                            <td class="left">@item.orderId</td>
+                                            <td class="left">@item.Description</td>
+                                            <td class="right">@item.Price</td>
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Back to List", "List")
+</p>
+
+@foreach (var item in ViewBag.OrderList)
+{
+    <span> @item.Description </span>
+    <span> @item.Price </span>
+
+}
+<h1>@ViewBag.TotalPrice</h1>

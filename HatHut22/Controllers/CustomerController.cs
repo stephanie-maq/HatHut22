@@ -17,6 +17,8 @@ namespace HatHut22.Controllers
     [Authorize]
     public class CustomerController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         // GET: Customer
         public ActionResult List(string search)
         {
@@ -167,6 +169,35 @@ namespace HatHut22.Controllers
                 return RedirectToAction("List");
             }
 
+        }
+
+        public ActionResult OrderSummary(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var totalPrice = 0;
+            using (var context = new ApplicationDbContext())
+            {
+                var orderList = db.Orders.Where(x => x.OrderCustomerId == id).Where(x => x.IsPaid == false);
+                foreach (var item in orderList)
+                {
+                    if (!item.IsPaid)
+                    {
+                        totalPrice += item.Price;
+
+
+                    }
+                }
+
+                ViewBag.OrderList = orderList;
+                ViewBag.TotalPrice = totalPrice;
+                //ViewBag.OrderEmployeeId = new SelectList(db.Employees, "EmployeeId", "Email");
+                //ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email");
+                //ViewBag.OrderProductId = productID;
+                return View();
+            }
         }
     }
 }

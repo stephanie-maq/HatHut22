@@ -2096,7 +2096,7 @@
     <Content Include="Views\Account\WrongCode.cshtml" />
     <Content Include="Views\Orders\OrderSummary.cshtml" />
     <Content Include="Views\Products\CreateCopy.cshtml" />
-    <Content Include="Views\Customer\CustomerOrder.cshtml" />
+    <Content Include="Views\Customer\OrderSummary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -25,14 +25,14 @@
                                     @Html.ActionLink("Edit", "Edit", new { id = Model.CostumerId }) |
                                     @Html.ActionLink("Back to List", "List")
                                 </p>
-                                
+
                             </center>
                         </div>
                     </div>
                     @using (@Html.BeginForm("Index", "Profile", FormMethod.Post))
                     {
-                        
-                        
+
+
                         <div class="row">
                             <center>
                                 <label>Name</label>
@@ -143,6 +143,8 @@
                 </div>
             </div>
         </div>
-    
+
     </div>
 </div>
+
+@Html.ActionLink("Skriv ut order", "OrderSummary", new { id = Model.CostumerId }) 
