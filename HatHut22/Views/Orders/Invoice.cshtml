@@ -22,12 +22,15 @@
                         </div>
                         <div class="col-sm-4">
                             <h6 class="mb-3">To:</h6>
+                            <div>@ViewBag.CustomerName</div>
                             <div>@ViewBag.CustomerAddress</div>
                             <div>@ViewBag.CustomerEmail</div>
                             <div>@ViewBag.CustomerPhone</div>
                         </div>
                         <div class="col-sm-4">
+                            <h6 class="mb-3">Description:</h6>
                             <div>@Html.DisplayFor(model => model.Description)</div>
+                            <h6 class="mb-3">Orderdate:</h6>
                             <div>@Html.DisplayFor(model => model.DateCreated)</div>
                         </div>                      
                     </div>

@@ -171,33 +171,5 @@ namespace HatHut22.Controllers
 
         }
 
-        public ActionResult OrderSummary(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var totalPrice = 0;
-            using (var context = new ApplicationDbContext())
-            {
-                var orderList = db.Orders.Where(x => x.OrderCustomerId == id).Where(x => x.IsPaid == false);
-                foreach (var item in orderList)
-                {
-                    if (!item.IsPaid)
-                    {
-                        totalPrice += item.Price;
-
-
-                    }
-                }
-
-                ViewBag.OrderList = orderList;
-                ViewBag.TotalPrice = totalPrice;
-                //ViewBag.OrderEmployeeId = new SelectList(db.Employees, "EmployeeId", "Email");
-                //ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email");
-                //ViewBag.OrderProductId = productID;
-                return View();
-            }
-        }
     }
 }

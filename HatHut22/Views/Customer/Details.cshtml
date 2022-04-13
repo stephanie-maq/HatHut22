@@ -147,4 +147,4 @@
     </div>
 </div>
 
-@Html.ActionLink("Skriv ut order", "OrderSummary", new { id = Model.CostumerId }) 
+@Html.ActionLink("Samtliga ordrar av kunden", "OrderSummary", "Orders", new { id = Model.CostumerId }, null)
