@@ -15,17 +15,6 @@
                 <div class="card-body">
                     <div class="row mb-4" style="margin-left: 10px;margin-right: 10px;">
                         <div class="col-sm-4">
-                            <h6 class="mb-3">From:</h6>
-                            <div>Address---</div>
-                            <div>Hattmakarna</div>
-                        </div>
-                        <div class="col-sm-4">
-                            <h6 class="mb-3">To:</h6>
-                            <div>@ViewBag.CustomerAddress</div>
-                            <div>@ViewBag.CustomerEmail</div>
-                            <div>@ViewBag.CustomerPhone</div>
-                        </div>
-                        <div class="col-sm-4">
                             <div>@Html.DisplayFor(model => model.Description)</div>
                             <div>@Html.DisplayFor(model => model.DateCreated)</div>
                         </div>
@@ -45,7 +34,6 @@
                                     @foreach (var item in ViewBag.OrderList)
                                     {
                                     <tr>
-
                                         <td class="left">@item.orderId</td>
                                         <td class="left">@item.Description</td>
                                         <td class="left">@item.IsPaid</td>
@@ -64,16 +52,8 @@
         </div>
     </div>
 </div>
+<h1> Left to pay: @ViewBag.TotalPrice</h1>
 
 <p>
     @Html.ActionLink("Back to List", "Index")
 </p>
-
-@*@foreach (var item in ViewBag.OrderList)
-{
-    <span>Order description: @item.Description </span>
-    <br>
-    <span>Price sum: @item.Price </span>
-
-}*@
-<h1> Left to pay: @ViewBag.TotalPrice</h1>
