@@ -12,6 +12,29 @@
     <a href="~/Products/Create" class="btn btn-primary btn-lg"><i class="fa-solid fa-circle-plus"></i>Add Product</a>
 </div>
 
+<br />
+<br />
+
+<div>
+
+    @using (@Html.BeginForm("Index", "Products", FormMethod.Get))
+    {
+        <div><b>Sort By:</b></div>
+        <div>
+            <div>@Html.RadioButton("searchBy", "All Products", true)<text>All Products</text></div>
+            <div>@Html.RadioButton("searchBy", "Stock Product")<text>Stock Product</text></div>
+            <div>@Html.RadioButton("searchBy", "Customized Stock Product")<text>Customized Stock Product</text></div>
+            <div>@Html.RadioButton("searchBy", "Custom Made Product")<text>Custom Made Product</text></div>
+        </div>
+
+
+        <div>
+            <input class="btn btn-default" type="submit" value="Filter" />
+        </div>
+
+    }
+</div>
+
 <table class="table">
     <tr>
         <th>
