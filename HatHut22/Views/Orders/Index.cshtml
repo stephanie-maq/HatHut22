@@ -4,7 +4,26 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Orders</h2>
+
+<div>
+
+    @using (@Html.BeginForm("Index", "Orders", FormMethod.Get))
+    {
+        <div><b>Sort By:</b></div>
+        <div>
+            <div>@Html.RadioButton("searchBy", "Alla Ordrar", true)<text>Alla Ordrar</text></div>
+            <div>@Html.RadioButton("searchBy", "Betalda Ordrar")<text>Betalda Ordrar</text></div>
+            <div>@Html.RadioButton("searchBy", "Färdiga Ordrar")<text>Färdiga Ordrar</text></div>
+        </div>
+
+
+        <div>
+            <input class="btn btn-default" type="submit" value="Filter" />
+        </div>
+
+    }
+</div>
 
 <table class="table">
     <tr>

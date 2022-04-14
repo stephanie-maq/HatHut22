@@ -17,7 +17,7 @@ namespace HatHut22.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Orders
-        public ActionResult Index()
+        public ActionResult Index(string searchBy)
         {
             using (var context = new ApplicationDbContext()) { 
                 var user = System.Web.HttpContext.Current.User.Identity.Name;
@@ -32,6 +32,21 @@ namespace HatHut22.Controllers
                 }
                 ViewBag.Orders = listOfOrderId;
                 var orders = db.Orders.Include(o => o.employeeMakingOrder).Include(o => o.ownerOfOrder).Include(o => o.productInOrder);
+
+                if (searchBy == "Alla Ordrar")
+                {
+                    return View(orders.ToList());
+                }
+                else if (searchBy == "Betalda Ordrar")
+                {
+                    return View(orders.ToList().Where(x => x.IsPaid.Equals(true)));
+                }
+                else if (searchBy == "Färdiga Ordrar")
+                {
+                    return View(orders.ToList().Where(x => x.IsHatFinnished.Equals(true)));
+                }
+                
+
                 return View(orders.ToList());
             }
         }

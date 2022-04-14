@@ -17,9 +17,32 @@ namespace HatHut22.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(string searchBy, string search)
         {
-            return View(db.Products.ToList());
+            List<Product> allProducts = new List<Product>();
+            allProducts = db.Products.ToList();
+
+            if (searchBy == "All Products")
+            {
+                return View(allProducts);
+            }
+            else if (searchBy == "Stock Product" && search != "")
+            {
+                return View(allProducts.Where(x => x.IsStockProduct.Equals(true)));
+            }
+            else if (searchBy == "Customized Stock Product" && search != "")
+            {
+                return View(allProducts.Where(x => x.IsSpecialProduct.Equals(true)));
+            }
+            else if (searchBy == "Custom Made Product" && search != "")
+            {
+                return View(allProducts.Where(x => x.IsCostumerMeasuredProduct.Equals(true)));
+            }
+
+
+            return View(allProducts);
+
+
         }
 
         // GET: Products/Details/5
