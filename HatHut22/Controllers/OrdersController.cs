@@ -19,7 +19,8 @@ namespace HatHut22.Controllers
         // GET: Orders
         public ActionResult Index(string searchBy)
         {
-            using (var context = new ApplicationDbContext()) { 
+            using (var context = new ApplicationDbContext())
+            {
                 var user = System.Web.HttpContext.Current.User.Identity.Name;
                 var employee = context.Employees.Include(x => x.ActiveInOrders).Where(x => x.Email == user).FirstOrDefault();
                 var ordersList = employee.ActiveInOrders.ToList();
@@ -45,13 +46,13 @@ namespace HatHut22.Controllers
                 {
                     return View(orders.ToList().Where(x => x.IsHatFinnished.Equals(true)));
                 }
-                
+
 
                 return View(orders.ToList());
             }
         }
-// skapa en order lägg till produkt i varukort
-       
+        // skapa en order lägg till produkt i varukort
+
 
         // GET: Orders/Details/5
         public ActionResult Details(int? id)
@@ -93,7 +94,7 @@ namespace HatHut22.Controllers
             using (var context = new ApplicationDbContext())
             {
                 var namn = "ingen";
-                Employee defaultEmploye = context.Employees.Where(x=>x.Fullname == namn).FirstOrDefault();
+                Employee defaultEmploye = context.Employees.Where(x => x.Fullname == namn).FirstOrDefault();
                 order.employeeMakingOrder = defaultEmploye;
                 order.OrderEmployeeId = defaultEmploye.EmployeeId;
 
@@ -107,7 +108,7 @@ namespace HatHut22.Controllers
                 ViewBag.OrderEmployeeId = new SelectList(db.Employees, "EmployeeId", "Email", order.OrderEmployeeId);
                 ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email", order.OrderCustomerId);
                 ViewBag.OrderProductId = new SelectList(db.Products, "productId", "Title", order.OrderProductId);
-                return View(order); 
+                return View(order);
             }
         }
 
@@ -204,7 +205,7 @@ namespace HatHut22.Controllers
                 //ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email");
                 //ViewBag.OrderProductId = productID;
                 return View(order);
-            }            
+            }
         }
 
         public ActionResult SpecificOrderSummary(int? id)
@@ -222,9 +223,9 @@ namespace HatHut22.Controllers
                     if (!item.IsPaid)
                     {
                         totalPrice += item.Price;
-                        
 
-                    }                  
+
+                    }
                 }
 
                 ViewBag.OrderList = orderList;
@@ -311,7 +312,7 @@ namespace HatHut22.Controllers
                 context.Entry(wantedOrder).State = EntityState.Modified;
                 context.SaveChanges();
                 return RedirectToAction("Index");
-                
+
             }
         }
 
@@ -329,5 +330,7 @@ namespace HatHut22.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Data.Models.Product>
+﻿@model Data.Models.StatisticsViewModel
 
 @{
     ViewBag.Title = "Statistics";
@@ -6,32 +6,22 @@
 
 <h2>Statistics</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div> <text>Total VAT for orders this year: @Html.DisplayFor(model => model.TotalVAT)  </text></div>
+
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>  
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @ViewBag.orderCount
-        </td>
 
-    </tr>
-}
+    @foreach (var item in Model.Orders.Reverse())
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td>
+                Number of sold items: @Html.DisplayFor(modelItem => item.Key)
+            </td>
+
+        </tr>
+    }
 
 </table>

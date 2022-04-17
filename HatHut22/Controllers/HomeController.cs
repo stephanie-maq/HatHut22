@@ -1,4 +1,5 @@
 ﻿using CVSITE21.Data;
+using Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,8 @@ namespace HatHut22.Controllers
 {
     public class HomeController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db = new ApplicationDbContext();
+
         public ActionResult Index()
         {
             return View();
@@ -31,12 +33,25 @@ namespace HatHut22.Controllers
 
         public ActionResult Statistics()
         {
-            ViewBag.Message = "Your contact page.";
-            ViewBag.orderCount = from p in db.Orders
-                                 group p by p.OrderProductId into g
-                                 select new { ProductCount = g.Count() };
+            double vat =
+                db.Orders
+                .Where(order => order.DateCreated.Year == DateTime.Now.Year)
+                .Select(order => order.Price)
+                .Sum() * 0.25;
 
-            return View(db.Products);
+            Dictionary<int, string> orderedProducts =
+                     db.Orders
+                     .GroupBy(order => order.productInOrder.Title)
+                     .ToDictionary(g => g.Count(), g => g.Key);
+
+            StatisticsViewModel statistics = new StatisticsViewModel
+            {
+                TotalVAT = vat,
+                Orders =
+                    new SortedDictionary<int, string>(orderedProducts)
+            };
+
+            return View(statistics);
         }
     }
 }
