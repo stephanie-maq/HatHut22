@@ -47,7 +47,7 @@ namespace HatHut22
                 text = string.Format("Please click on this link to {0}: {1}", message.Subject, message.Body);
                 html = "Please reset your password by clicking this link: <a href=\"" + message.Body + "\">link</a><br/><br/><br/><br/>";
             }
-            html += HttpUtility.HtmlEncode(@"Or click on the copy the following link on the browser:" + message.Body);
+            html += HttpUtility.HtmlEncode(@"Or click on the copy the following link on the browser: " + message.Body);
             #endregion
 
             MailMessage mail = new MailMessage();
