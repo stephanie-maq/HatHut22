@@ -10,8 +10,9 @@
 
 <table class="table">
 
-
-    @foreach (var item in Model.Orders.Reverse())
+    @if (Model != null)
+    {
+    foreach (var item in Model.Orders.Reverse())
     {
         <tr>
             <td>
@@ -22,6 +23,7 @@
             </td>
 
         </tr>
+    }
     }
 
 </table>

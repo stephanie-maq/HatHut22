@@ -32,26 +32,29 @@ namespace HatHut22.Controllers
         }
 
         public ActionResult Statistics()
-        {
-            double vat =
-                db.Orders
-                .Where(order => order.DateCreated.Year == DateTime.Now.Year)
-                .Select(order => order.Price)
-                .Sum() * 0.25;
-
-            Dictionary<int, string> orderedProducts =
-                     db.Orders
-                     .GroupBy(order => order.productInOrder.Title)
-                     .ToDictionary(g => g.Count(), g => g.Key);
-
-            StatisticsViewModel statistics = new StatisticsViewModel
+        {if (db.Orders.Count() > 0)
             {
-                TotalVAT = vat,
-                Orders =
-                    new SortedDictionary<int, string>(orderedProducts)
-            };
+                double vat =
+                    db.Orders
+                    .Where(order => order.DateCreated.Year == DateTime.Now.Year)
+                    .Select(order => order.Price)
+                    .Sum() * 0.25;
 
-            return View(statistics);
+                Dictionary<int, string> orderedProducts =
+                         db.Orders
+                         .GroupBy(order => order.productInOrder.Title)
+                         .ToDictionary(g => g.Count(), g => g.Key);
+
+                StatisticsViewModel statistics = new StatisticsViewModel
+                {
+                    TotalVAT = vat,
+                    Orders =
+                        new SortedDictionary<int, string>(orderedProducts)
+                };
+
+                return View(statistics);
+            }
+            else { return View(); }
         }
     }
 }
