@@ -1,129 +1,133 @@
-﻿@model Data.Models.Order
+﻿@model IEnumerable<Data.Models.Order>
 
 @{
     ViewBag.Title = "Details";
 }
 
 <h2>Details</h2>
+@foreach (var item in Model)
+{
+    <div>
+        <h4>Order</h4>
+        <hr />
+        <dl class="dl-horizontal">
 
-<div>
-    <h4>Order</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.employeeMakingOrder.Email)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.employeeMakingOrder)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.employeeMakingOrder.Email)
-        </dd>
+            <dd>
+                @Html.DisplayFor(modelItem => item.employeeMakingOrder.Fullname)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ownerOfOrder.Email)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ownerOfOrder)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ownerOfOrder.Email)
-        </dd>
+            <dd>
+                @Html.DisplayFor(modelItem => item.ownerOfOrder.Fullname)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.productInOrder.Title)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.productInOrder.Title)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.productInOrder.Title)
-        </dd>
+            <dd>
+                @Html.DisplayFor(modelItem => item.productInOrder.Title)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dd>
+                @Html.DisplayFor(modelItem => item.Description)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DateCreated)
-        </dd>
+            <dd>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsPaid)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.IsPaid)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsPaid)
-        </dd>
+            <dd>
+                @Html.DisplayFor(modelItem => item.IsPaid)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsHatFinnished)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.IsHatFinnished)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsHatFinnished)
-        </dd>
+            <dd>
+                @Html.DisplayFor(modelItem => item.IsHatFinnished)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsSent)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.IsSent)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsSent)
-        </dd>
+            <dd>
+                @Html.DisplayFor(modelItem => item.IsSent)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HaveMaterials)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.HaveMaterials)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.HaveMaterials)
-        </dd>
+            <dd>
+                @Html.DisplayFor(modelItem => item.HaveMaterials)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+            <dd>
+                @Html.DisplayFor(modelItem => item.Price)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Material)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Material)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Material)
-        </dd>
+            <dd>
+                @Html.DisplayFor(modelItem => item.Material)
+            </dd>
 
-        <div class="col">
-            <center>
+            <div class="col">
+                <center>
 
-                @if (Model.ImagePath == null || Model.ImagePath != null)
-                {
-                    var imgurl = "";
-                    if (Model.ImagePath == null)
+                    @if (item.ImagePath == null || item.ImagePath != null)
                     {
-                        <p>no images</p>
-                    }
-                    else
-                    {
-                        imgurl = "/Images/" + Model.ImagePath;
-                        <img src="@imgurl" width="100px" />
+                        var imgurl = "";
+                        if (item.ImagePath == null)
+                        {
+                            <p>no images</p>
+                        }
+                        else
+                        {
+                            imgurl = "/Images/" + item.ImagePath;
+                            <img src="@imgurl" width="100px" />
+
+                        }
 
                     }
+                </center>
+            </div>
 
-                }
-            </center>
-        </div>
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.orderId }) |
-    @Html.ActionLink("Back to List", "Index") |
-    @Html.ActionLink("Add Image", "Create", "Image", new { id = Model.orderId }, null) |
-    @Html.ActionLink("Invoice", "Invoice", new { id = Model.orderId }) |
-    @Html.ActionLink("Beställnings sammanfattning", "SpecificOrderSummary", new { id = Model.orderId })
-</p>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = item.orderId }) |
+        @Html.ActionLink("Back to List", "Index") |
+        @Html.ActionLink("Add Image", "Create", "Image", new { id = item.orderId }, null) |
+        @Html.ActionLink("Invoice", "Invoice", new { id = item.orderId }) |
+        @Html.ActionLink("Beställnings sammanfattning", "SpecificOrderSummary", new { id = item.orderId })
+    </p>
+}

@@ -57,16 +57,19 @@ namespace HatHut22.Controllers
         // GET: Orders/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            using (var context = new ApplicationDbContext())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                var order = context.Orders.Where(x=>x.orderId == id).Include(o => o.employeeMakingOrder).Include(o => o.ownerOfOrder).Include(o => o.productInOrder);
+                if (order == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(order.ToList());
             }
-            Order order = db.Orders.Find(id);
-            if (order == null)
-            {
-                return HttpNotFound();
-            }
-            return View(order);
         }
 
         // GET: Orders/Create
