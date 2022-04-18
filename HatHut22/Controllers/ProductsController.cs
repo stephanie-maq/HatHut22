@@ -20,7 +20,7 @@ namespace HatHut22.Controllers
         public ActionResult Index(string searchBy, string search)
         {
             List<Product> allProducts = new List<Product>();
-            allProducts = db.Products.ToList();
+            allProducts = db.Products.Where(x=>x.Title != "borttagen produkt").ToList();
 
             if (searchBy == "All Products")
             {
@@ -184,6 +184,23 @@ namespace HatHut22.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Product product = db.Products.Find(id);
+
+            int produktID = product.productId;
+            Product wantedProduct = db.Products.Where(x => x.Title == "borttagen produkt").FirstOrDefault();
+            var wantedOrders = db.Orders.Where(x => x.OrderProductId == id);
+            foreach (var item in wantedOrders)
+            {
+                
+                item.productInOrder = wantedProduct;
+                item.OrderProductId = wantedProduct.productId;
+
+                db.Entry(item).State = EntityState.Modified;
+                
+
+            }
+            product.ExistInOrders = null;
+            db.Entry(product).State = EntityState.Modified;
+            db.SaveChanges();
             db.Products.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");
