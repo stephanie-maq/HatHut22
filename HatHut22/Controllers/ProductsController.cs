@@ -81,6 +81,18 @@ namespace HatHut22.Controllers
                 return View(copyProduct);
             }
         }
+        [HttpPost]
+        public ActionResult CreateCopy([Bind(Include = "productid,title,description,datecreated,price,isstockproduct,isspecialproduct,iscostumermeasuredproduct")] Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Products.Add(product);
+                db.SaveChanges();
+                return RedirectToAction("index");
+            }
+
+            return View(product);
+        }
 
         // POST: Products/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
