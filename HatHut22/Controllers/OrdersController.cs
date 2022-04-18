@@ -74,13 +74,17 @@ namespace HatHut22.Controllers
         {
             using (var context = new ApplicationDbContext())
             {
-                var productID = id;
-                var products = context.Products.FirstOrDefault(x => x.productId == productID);
-                ViewBag.ProductPrice = products.Price;
-                ViewBag.ProductTitle = products.Title;
-                ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email");
-                ViewBag.OrderProductId = productID;
-                return View();
+                if (context.Customers.ToList().Count() != 0 )
+                {
+                    var productID = id;
+                    var products = context.Products.FirstOrDefault(x => x.productId == productID);
+                    ViewBag.ProductPrice = products.Price;
+                    ViewBag.ProductTitle = products.Title;
+                    ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email");
+                    ViewBag.OrderProductId = productID;
+                    return View();
+                }
+                else { return RedirectToAction("Create", "Customer"); }
             }
         }
 
