@@ -139,7 +139,7 @@ namespace HatHut22.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "orderId,Description,DateCreated,IsPaid,IsHatFinnished,IsSent,HaveMaterials,ImagePath,Price,Material,OrderCustomerId,OrderProductId")] Order order)
+        public ActionResult Edit([Bind(Include = "orderId,Description,DateCreated,IsPaid,IsHatFinnished,IsSent,HaveMaterials,Price,Material,OrderCustomerId,OrderProductId")] Order order)
         {
             using (var context = new ApplicationDbContext())
             {

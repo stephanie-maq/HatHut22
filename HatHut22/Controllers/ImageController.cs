@@ -27,25 +27,29 @@ namespace HatHut22.Controllers
             {
                 using (var context = new ApplicationDbContext())
                 {
-
                     var order = context.Orders.First(a => a.orderId == model.CurrentOrderID);
+                    var filenameraw = "";
+                    if (model.Image != null)
+                    {
+                        
 
-                    var newImg = new SaveImage()
-                    { };
+                        var newImg = new SaveImage()
+                        { };
 
-                    var filename = model.Image.FileName;
-                    var filepath = System.Web.HttpContext.Current.Server.MapPath("~/Images");
-                    model.Image.SaveAs(filepath + "/" + filename);
+                        var filename = model.Image.FileName;
+                        var filepath = System.Web.HttpContext.Current.Server.MapPath("~/Images");
+                        model.Image.SaveAs(filepath + "/" + filename);
 
-                    newImg.ImagePath = filename;
-                    var filenameraw = filename.ToString();
-                   
+                        newImg.ImagePath = filename;
+                        filenameraw = filename.ToString();
+
+                    }
+                        var orderid = order.orderId;
+
+                        ViewBag.CurrentOrderID = orderid;
+                        order.ImagePath = filenameraw;
+                        context.SaveChanges();
                     
-                    var orderid= order.orderId;
-
-                    ViewBag.CurrentOrderID = orderid;
-                    order.ImagePath = filenameraw;
-                    context.SaveChanges();
                     var redirectUrl = "~/Orders/Details/" + orderid;
                     return Redirect(redirectUrl);
                 }
