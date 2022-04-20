@@ -26,7 +26,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.DateCreated, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @Value = @DateTime.Now.ToShortDateString(), @class = "form-control", @readonly = "readonly" } })
+            @Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @Value = @DateTime.Now, @class = "form-control", @readonly = "readonly" } })
             @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
         </div>
     </div>
