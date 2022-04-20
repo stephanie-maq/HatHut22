@@ -338,6 +338,24 @@ namespace HatHut22.Controllers
             }
         }
 
+        public ActionResult MaterialsOrdered(string id)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var orders = db.Orders.Where(x => x.Material == id);
+
+                foreach (var item in orders)
+                {
+
+                    item.HaveMaterials = true;
+
+                    db.Entry(item).State = EntityState.Modified;
+                    
+                }
+                db.SaveChanges();
+                return RedirectToAction("Statistics", "Home");
+            }
+        }
 
     }
 }

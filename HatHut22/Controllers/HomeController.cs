@@ -52,6 +52,13 @@ namespace HatHut22.Controllers
                         new SortedDictionary<int, string>(orderedProducts)
                 };
 
+                var PolyesterNumber = db.Orders.Where(order => order.Material == "Polyester").Where(order => order.HaveMaterials == false).Count();
+                var CottonNumber = db.Orders.Where(order => order.Material == "Cotton").Where(order => order.HaveMaterials == false).Count();
+                var LeatherNumber = db.Orders.Where(order => order.Material == "Leather").Where(order => order.HaveMaterials == false).Count();
+                ViewBag.PolyesterNeeded = PolyesterNumber;
+                ViewBag.CottonNeeded = CottonNumber;
+                ViewBag.LeatherNeeded = LeatherNumber;
+                
                 return View(statistics);
             }
             else { return View(); }
