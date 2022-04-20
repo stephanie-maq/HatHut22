@@ -5,25 +5,111 @@
 }
 
 <h2>Statistics</h2>
+<br />
+<br />
 
-<div> <text>Total VAT for orders this year: @Html.DisplayFor(model => model.TotalVAT)  </text></div>
+<div>
+    <h3>Vat for @DateTime.Now.Year</h3>
+    <h4>Total VAT for orders this year: @Html.DisplayFor(model => model.TotalVAT)  </h4>
+</div>
+<br />
+<div>
+    <h3>Sell statistics:</h3>
+    <table class="table">
 
-<table class="table">
+        @if (Model != null)
+        {
+            foreach (var item in Model.Orders.Reverse())
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Value)
+                    </td>
+                    <td>
+                        Number of sold items: @Html.DisplayFor(modelItem => item.Key)
+                    </td>
 
-    @if (Model != null)
-    {
-    foreach (var item in Model.Orders.Reverse())
-    {
+                </tr>
+            }
+        }
+
+    </table>
+</div>
+<br />
+<div>
+    <h3>Materials missing:</h3>
+    <table class="table">
+
+        @if (Model != null)
+        {
+            foreach (var item in Model.Orders.Reverse())
+            {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Value)
+                Polyester
             </td>
             <td>
-                Number of sold items: @Html.DisplayFor(modelItem => item.Key)
+                Orders needing materials: @ViewBag.PolyesterNeeded
             </td>
+            @if (ViewBag.PolyesterNeeded > 0)
+            {
+
+                <td>
+                    <input type="button" class="btn btn-default" value="Material beställd" onclick="location.href='@Url.Action("MaterialsOrdered", "Orders", new { id = "Polyester"})'" />
+                </td>
+            }
+            else
+            {
+                <td>
+                    <input type="button" disabled="disabled" class="btn btn-default" value="Material beställd" onclick="location.href='@Url.Action("MaterialsOrdered", "Orders", new { id = "Cotton" })'" />
+                </td>
+            }
+        </tr>
+        <tr>
+            <td>
+                Cotton
+            </td>
+            <td>
+                Orders needing materials: @ViewBag.CottonNeeded
+            </td>
+            @if (ViewBag.CottonNeeded > 0)
+            {
+
+                <td>
+                    <input type="button" class="btn btn-default" value="Material beställd" onclick="location.href='@Url.Action("MaterialsOrdered", "Orders", new { id = "Cotton" })'" />
+                </td>
+            }
+            else
+            {
+                <td>
+                    <input type="button" disabled="disabled" class="btn btn-default" value="Material beställd" onclick="location.href='@Url.Action("MaterialsOrdered", "Orders", new { id = "Cotton" })'" />
+                </td>
+            }
 
         </tr>
-    }
-    }
+        <tr>
+            <td>
+                Leather
+            </td>
+            <td>
+                Orders needing materials: @ViewBag.LeatherNeeded
+            </td>
+            @if (ViewBag.LeatherNeeded > 0)
+            {
 
-</table>
+                <td>
+                    <input type="button" class="btn btn-default" value="Material beställd" onclick="location.href='@Url.Action("MaterialsOrdered", "Orders", new { id = "Leather" }, null)'" />
+                </td>
+            }
+            else
+            {
+                <td>
+                    <input type="button" disabled="disabled" class="btn btn-default" value="Material beställd" onclick="location.href='@Url.Action("MaterialsOrdered", "Orders", new { id = "Cotton" })'" />
+                </td>
+            }
+        </tr>
+            }
+        }
+
+    </table>
+</div>
