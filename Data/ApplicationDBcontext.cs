@@ -58,6 +58,11 @@ namespace CVSITE21.Data
             .HasRequired<Product>(s => s.productInOrder)
             .WithMany(g => g.ExistInOrders)
             .HasForeignKey<int>(s => s.OrderProductId);
+
+            modelBuilder.Entity<Order>()
+            .HasRequired<Material>(s => s.MaterialInOrder)
+            .WithMany(g => g.MaterialOfOrders)
+            .HasForeignKey<int>(s => s.OrderMaterialId);
         }
 
     }

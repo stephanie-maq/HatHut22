@@ -157,11 +157,16 @@
     <Compile Include="Migrations\202204131324063_order create&amp;edit fix.designer.cs">
       <DependentUpon>202204131324063_order create&amp;edit fix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204211118102_AddMaterial.cs" />
+    <Compile Include="Migrations\202204211118102_AddMaterial.designer.cs">
+      <DependentUpon>202204211118102_AddMaterial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="ApplicationDBcontext.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Invoice.cs" />
+    <Compile Include="Models\Material.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\SaveImage.cs" />
@@ -193,6 +198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204131324063_order create&amp;edit fix.resx">
       <DependentUpon>202204131324063_order create&amp;edit fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204211118102_AddMaterial.resx">
+      <DependentUpon>202204211118102_AddMaterial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
