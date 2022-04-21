@@ -7,6 +7,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using HatHut22.Models;
+using CVSITE21.Data;
+using Data.Models;
+using System.Data.Entity;
 
 namespace HatHut22.Controllers
 {
@@ -72,8 +75,18 @@ namespace HatHut22.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
+            using (var context = new ApplicationDbContext())
+            {
+                var email = System.Web.HttpContext.Current.User.Identity.Name;
+                var namn = context.Employees.Where(x => x.Email == email);
+                Employee employee = namn.FirstOrDefault();
+                var fullnamn = employee.Fullname;
+                ViewBag.Namn = fullnamn;
+                    }
             return View(model);
         }
+
+
 
         //
         // POST: /Manage/RemoveLogin
@@ -333,7 +346,46 @@ namespace HatHut22.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        // GET: Employee/Edit/5
+        public ActionResult Edit()
+        {
+            using (var context = new ApplicationDbContext())
+            {
+
+                var email = System.Web.HttpContext.Current.User.Identity.Name;
+                var employee = context.Employees.FirstOrDefault(x => x.Email == email);
+
+
+
+                Employee employeenullcheck = employee;
+                if (employeenullcheck == null)
+                {
+                    return HttpNotFound();
+                }
+
+                return View(employee);
+
+            }
+        }
+
+        // POST: Employee/Edit/5
+        [HttpPost]
+        public ActionResult Edit([Bind(Include = "EmployeeId,Email,Fullname")] Employee employee)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                if (ModelState.IsValid)
+                {
+                    context.Entry(employee).State = EntityState.Modified;
+                    context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                return RedirectToAction("Index");
+            }
+        }
+
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
