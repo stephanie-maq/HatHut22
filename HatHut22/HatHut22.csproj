@@ -2101,10 +2101,11 @@
     <Content Include="Views\Home\Statistics.cshtml" />
     <Content Include="Views\Orders\CurrentOrderSummary.cshtml" />
     <Content Include="Views\Account\EmailNotConfirmed.cshtml" />
+    <Content Include="Views\Material\Create.cshtml" />
+    <Content Include="Views\Material\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Material\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

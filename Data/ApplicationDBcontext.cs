@@ -34,7 +34,8 @@ namespace CVSITE21.Data
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Order> Orders { get; set; }
-       
+        public DbSet<Material> Materials { get; set; }
+
 
         public static ApplicationDbContext Create()
         {

@@ -161,6 +161,10 @@
     <Compile Include="Migrations\202204211118102_AddMaterial.designer.cs">
       <DependentUpon>202204211118102_AddMaterial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204211209165_material wip.cs" />
+    <Compile Include="Migrations\202204211209165_material wip.designer.cs">
+      <DependentUpon>202204211209165_material wip.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="ApplicationDBcontext.cs" />
@@ -201,6 +205,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204211118102_AddMaterial.resx">
       <DependentUpon>202204211118102_AddMaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204211209165_material wip.resx">
+      <DependentUpon>202204211209165_material wip.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

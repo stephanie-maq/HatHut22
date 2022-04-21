@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Data.Models.Material>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MaterialName)
+        </th>
+        <th>
+            Orders needing materials:
+        </th>
+        <th>
+            Sätt som beställd:
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.MaterialName)
+    </td>
+    @{
+        var parameterValue = item.MaterialOfOrders.Where(x=>x.HaveMaterials == false).Count();
+    }
+    <td>
+        @parameterValue
+    </td>
+    @if (parameterValue > 0)
+    {
+
+        <td>
+            <input type="button" class="btn btn-default" value="Material beställd" onclick="location.href='@Url.Action("MaterialsOrdered", "Orders", new { id = item.MaterialId})'" />
+        </td>
+    }
+    else
+    {
+        <td>
+            <input type="button" disabled="disabled" class="btn btn-default" value="Material beställd" onclick="location.href='@Url.Action("MaterialsOrdered", "Orders", new { id = item.MaterialId })'" />
+        </td>
+    }
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.MaterialId }) 
+    </td>
+</tr>
+}
+
+</table>

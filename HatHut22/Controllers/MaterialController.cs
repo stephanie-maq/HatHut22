@@ -1,17 +1,32 @@
-﻿using System;
+﻿using Data.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data;
+using System.Data.Entity;
+using System.Net;
+using CVSITE21.Data;
 
 namespace HatHut22.Controllers
 {
+    [Authorize]
     public class MaterialController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Material
         public ActionResult Index()
         {
-            return View();
+            using (var context = new ApplicationDbContext())
+            {
+               
+                
+                var materials = db.Materials.Include(o => o.MaterialOfOrders);
+
+               
+                return View(materials.ToList());
+            }
         }
 
         // GET: Material/Details/5
@@ -28,18 +43,15 @@ namespace HatHut22.Controllers
 
         // POST: Material/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create([Bind(Include = "MaterialId, MaterialName, Color")] Material material)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                db.Materials.Add(material);
+                db.SaveChanges();
+                return RedirectToAction("index");
             }
-            catch
-            {
-                return View();
-            }
+            else { return View(material); }
         }
 
         // GET: Material/Edit/5

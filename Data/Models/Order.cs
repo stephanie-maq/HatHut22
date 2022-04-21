@@ -38,8 +38,9 @@ namespace Data.Models
         public int OrderProductId { get; set; }
         [Display(Name = "Produkt")]
         public Product productInOrder { get; set; }
+        [Display(Name = "Material")]
         public int OrderMaterialId { get; set; }
-        [Display(Name = "Produkt")]
+        [Display(Name = "Material")]
         public Material MaterialInOrder { get; set; }
 
     }
