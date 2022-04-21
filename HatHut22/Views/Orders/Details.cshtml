@@ -93,11 +93,11 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.Material)
+               Material
             </dt>
 
             <dd>
-                @Html.DisplayFor(modelItem => item.Material)
+                @ViewBag.Material 
             </dd>
 
             <div class="col">
@@ -126,6 +126,7 @@
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = item.orderId }) |
         @Html.ActionLink("Back to List", "Index") |
+        <br />
         @Html.ActionLink("Add Image", "Create", "Image", new { id = item.orderId }, null) |
         @Html.ActionLink("Invoice", "Invoice", new { id = item.orderId }) |
         @Html.ActionLink("Beställnings sammanfattning", "SpecificOrderSummary", new { id = item.orderId })

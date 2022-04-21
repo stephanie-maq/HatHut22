@@ -59,6 +59,8 @@ namespace HatHut22.Controllers
         {
             using (var context = new ApplicationDbContext())
             {
+                
+
                 if (id == null)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -68,6 +70,10 @@ namespace HatHut22.Controllers
                 {
                     return HttpNotFound();
                 }
+                Order ordern = order.FirstOrDefault(x => x.orderId == id);
+                var MaterialID = ordern.OrderMaterialId;
+                Material currentMatrial = context.Materials.FirstOrDefault(x => x.MaterialId == MaterialID);
+                ViewBag.Material = currentMatrial.MaterialName;
                 return View(order.ToList());
             }
         }
@@ -84,6 +90,7 @@ namespace HatHut22.Controllers
                     ViewBag.ProductPrice = products.Price;
                     ViewBag.ProductTitle = products.Title;
                     ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email");
+                    ViewBag.OrderMaterialId = new SelectList(db.Materials, "MaterialId", "MaterialName");
                     ViewBag.OrderProductId = productID;
                     return View();
                 }
@@ -96,7 +103,7 @@ namespace HatHut22.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "orderId,Description,DateCreated,IsPaid,IsHatFinnished,IsSent,HaveMaterials,ImagePath,Price,Material,OrderCustomerId,OrderProductId")] Order order)
+        public ActionResult Create([Bind(Include = "orderId,Description,DateCreated,IsPaid,IsHatFinnished,IsSent,HaveMaterials,ImagePath,Price,OrderMaterialId,OrderCustomerId,OrderProductId")] Order order)
         {
             using (var context = new ApplicationDbContext())
             {
@@ -114,6 +121,7 @@ namespace HatHut22.Controllers
 
                 ViewBag.OrderEmployeeId = new SelectList(db.Employees, "EmployeeId", "Email", order.OrderEmployeeId);
                 ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email", order.OrderCustomerId);
+                ViewBag.OrderMaterialId = new SelectList(db.Materials, "MaterialId", "MaterialName", order.OrderMaterialId);
                 ViewBag.OrderProductId = new SelectList(db.Products, "productId", "Title", order.OrderProductId);
                 return View(order);
             }
@@ -133,6 +141,7 @@ namespace HatHut22.Controllers
             }
             ViewBag.OrderEmployeeId = new SelectList(db.Employees, "EmployeeId", "Email", order.OrderEmployeeId);
             ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email", order.OrderCustomerId);
+            ViewBag.OrderMaterialId = new SelectList(db.Materials, "MaterialId", "MaterialName", order.OrderMaterialId);
             ViewBag.OrderProductId = new SelectList(db.Products, "productId", "Title", order.OrderProductId);
             return View(order);
         }
@@ -142,7 +151,7 @@ namespace HatHut22.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "orderId,Description,DateCreated,IsPaid,IsHatFinnished,IsSent,HaveMaterials,Price,Material,OrderCustomerId,OrderProductId")] Order order)
+        public ActionResult Edit([Bind(Include = "orderId,Description,DateCreated,IsPaid,IsHatFinnished,IsSent,HaveMaterials,Price,OrderMaterialId,OrderCustomerId,OrderProductId")] Order order)
         {
             using (var context = new ApplicationDbContext())
             {
@@ -157,6 +166,7 @@ namespace HatHut22.Controllers
                 }
                 ViewBag.OrderEmployeeId = new SelectList(db.Employees, "EmployeeId", "Email", order.OrderEmployeeId);
                 ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email", order.OrderCustomerId);
+                ViewBag.OrderMaterialId = new SelectList(db.Materials, "MaterialId", "MaterialName", order.OrderMaterialId);
                 ViewBag.OrderProductId = new SelectList(db.Products, "productId", "Title", order.OrderProductId);
                 return View(order);
             }
@@ -338,11 +348,11 @@ namespace HatHut22.Controllers
             }
         }
 
-        public ActionResult MaterialsOrdered(string id)
+        public ActionResult MaterialsOrdered(int id)
         {
             using (var context = new ApplicationDbContext())
             {
-                var orders = db.Orders.Where(x => x.Material == id);
+                var orders = db.Orders.Where(x => x.OrderMaterialId == id);
 
                 foreach (var item in orders)
                 {
@@ -350,10 +360,10 @@ namespace HatHut22.Controllers
                     item.HaveMaterials = true;
 
                     db.Entry(item).State = EntityState.Modified;
-                    
+
                 }
                 db.SaveChanges();
-                return RedirectToAction("Statistics", "Home");
+                return RedirectToAction("Index", "Material");
             }
         }
 

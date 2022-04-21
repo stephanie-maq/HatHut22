@@ -34,7 +34,8 @@ namespace CVSITE21.Data
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Order> Orders { get; set; }
-       
+        public DbSet<Material> Materials { get; set; }
+
 
         public static ApplicationDbContext Create()
         {
@@ -58,6 +59,11 @@ namespace CVSITE21.Data
             .HasRequired<Product>(s => s.productInOrder)
             .WithMany(g => g.ExistInOrders)
             .HasForeignKey<int>(s => s.OrderProductId);
+
+            modelBuilder.Entity<Order>()
+            .HasRequired<Material>(s => s.MaterialInOrder)
+            .WithMany(g => g.MaterialOfOrders)
+            .HasForeignKey<int>(s => s.OrderMaterialId);
         }
 
     }

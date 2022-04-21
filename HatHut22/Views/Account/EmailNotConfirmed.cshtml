@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "EmailNotConfirmed";
+}
+
+<h2>EmailNotConfirmed</h2>
+
+
+<div>
+    <p>
+        Please confirm your email before logging in. After confirming, try again using: @Html.ActionLink("Click here to Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+    </p>
+</div>

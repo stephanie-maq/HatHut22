@@ -27,7 +27,6 @@ namespace Data.Models
         public bool HaveMaterials { get; set; }
         public string ImagePath { get; set; }
         public int Price { get; set; }
-        public string Material { get; set; }
         public int OrderCustomerId { get; set; }
         [Display(Name = "Kund")]
         public Customer ownerOfOrder { get; set; }
@@ -39,6 +38,10 @@ namespace Data.Models
         public int OrderProductId { get; set; }
         [Display(Name = "Produkt")]
         public Product productInOrder { get; set; }
+        [Display(Name = "Material")]
+        public int OrderMaterialId { get; set; }
+        [Display(Name = "Material")]
+        public Material MaterialInOrder { get; set; }
 
     }
 }

@@ -18,7 +18,7 @@ namespace Data.Models
         [RegularExpression(@"^[a-zA-Z0-9 ]+$", ErrorMessage = "Adress can only have letters, numbers and space")]
         public string Address { get; set; }
         public string Notes { get; set; }
-        [RegularExpression(@"^[ 0-9 ]+$", ErrorMessage = "Phone numbers can only consist of numbers and area code.")]
+        [RegularExpression(@"^\s*-?[0-9]{1,10}\s*$", ErrorMessage = "Phone numbers can only consist of numbers and area code and are max. 9 numbers.")]
         public int phoneNumber { get; set; }
         public ICollection<Order> OwnerOfOrders { get; set; }
     }
