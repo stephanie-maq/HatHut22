@@ -18,7 +18,9 @@ namespace HatHut22
                 var DumpProfile = context.Employees.FirstOrDefault(x => x.Fullname == namn);
                 var ingenprodukt = "borttagen produkt";
                 var DumpProdukt = context.Products.FirstOrDefault(x => x.Title == ingenprodukt);
-                    if (DumpProfile == null) 
+                var ingenkund = "borttagen kund";
+                var DumpKund = context.Customers.FirstOrDefault(x => x.Fullname == ingenkund);
+                if (DumpProfile == null) 
                     { 
                         Employee employee = new Employee();
                         employee.EmployeeId = 0;
@@ -35,6 +37,17 @@ namespace HatHut22
                     product.Description = "Produkten har blivit borttagen";
                     product.DateCreated = DateTime.Now;
                     context.Products.Add(product);
+                    context.SaveChanges();
+                }
+                else { }
+                if (DumpKund == null)
+                {
+                    Customer customer = new Customer();
+                    customer.CostumerId = 0;
+                    customer.Fullname = ingenkund;
+                    customer.Email = "BorttagenKund@gmail.com";
+                    customer.Notes = "Kunden har blivit borttagen";
+                    context.Customers.Add(customer);
                     context.SaveChanges();
                 }
                 else { }
