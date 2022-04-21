@@ -27,10 +27,11 @@ namespace Data.Models
         public bool HaveMaterials { get; set; }
         public string ImagePath { get; set; }
         public int Price { get; set; }
+        [Display(Name = "Kund")]
         public int OrderCustomerId { get; set; }
         [Display(Name = "Kund")]
         public Customer ownerOfOrder { get; set; }
-        [Display(Name = "Kund")]
+        [Display(Name = "Anställd")]
         public int? OrderEmployeeId { get; set; }
         [Display(Name = "Aktiv anställd")]
         public Employee employeeMakingOrder { get; set; }

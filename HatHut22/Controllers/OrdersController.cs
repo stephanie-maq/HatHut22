@@ -89,7 +89,7 @@ namespace HatHut22.Controllers
                     var products = context.Products.FirstOrDefault(x => x.productId == productID);
                     ViewBag.ProductPrice = products.Price;
                     ViewBag.ProductTitle = products.Title;
-                    ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email");
+                    ViewBag.OrderCustomerId = new SelectList(db.Customers.Where(x => x.Fullname != "borttagen kund"), "CostumerId", "Email");
                     ViewBag.OrderMaterialId = new SelectList(db.Materials, "MaterialId", "MaterialName");
                     ViewBag.OrderProductId = productID;
                     return View();
@@ -120,9 +120,9 @@ namespace HatHut22.Controllers
                 }
 
                 ViewBag.OrderEmployeeId = new SelectList(db.Employees, "EmployeeId", "Email", order.OrderEmployeeId);
-                ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email", order.OrderCustomerId);
+                ViewBag.OrderCustomerId = new SelectList(db.Customers.Where(x => x.Fullname != "borttagen kund"), "CostumerId", "Email", order.OrderCustomerId);
                 ViewBag.OrderMaterialId = new SelectList(db.Materials, "MaterialId", "MaterialName", order.OrderMaterialId);
-                ViewBag.OrderProductId = new SelectList(db.Products, "productId", "Title", order.OrderProductId);
+                ViewBag.OrderProductId = new SelectList(db.Products.Where(x => x.Title != "borttagen produkt"), "productId", "Title", order.OrderProductId);
                 return View(order);
             }
         }
@@ -140,9 +140,9 @@ namespace HatHut22.Controllers
                 return HttpNotFound();
             }
             ViewBag.OrderEmployeeId = new SelectList(db.Employees, "EmployeeId", "Email", order.OrderEmployeeId);
-            ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email", order.OrderCustomerId);
+            ViewBag.OrderCustomerId = new SelectList(db.Customers.Where(x => x.Fullname != "borttagen kund"), "CostumerId", "Email", order.OrderCustomerId);
             ViewBag.OrderMaterialId = new SelectList(db.Materials, "MaterialId", "MaterialName", order.OrderMaterialId);
-            ViewBag.OrderProductId = new SelectList(db.Products, "productId", "Title", order.OrderProductId);
+            ViewBag.OrderProductId = new SelectList(db.Products.Where(x => x.Title != "borttagen produkt"), "productId", "Title", order.OrderProductId);
             return View(order);
         }
 
@@ -165,9 +165,9 @@ namespace HatHut22.Controllers
                     return RedirectToAction("Index");
                 }
                 ViewBag.OrderEmployeeId = new SelectList(db.Employees, "EmployeeId", "Email", order.OrderEmployeeId);
-                ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email", order.OrderCustomerId);
+                ViewBag.OrderCustomerId = new SelectList(db.Customers.Where(x => x.Fullname != "borttagen kund"), "CostumerId", "Email", order.OrderCustomerId);
                 ViewBag.OrderMaterialId = new SelectList(db.Materials, "MaterialId", "MaterialName", order.OrderMaterialId);
-                ViewBag.OrderProductId = new SelectList(db.Products, "productId", "Title", order.OrderProductId);
+                ViewBag.OrderProductId = new SelectList(db.Products.Where(x => x.Title != "borttagen produkt"), "productId", "Title", order.OrderProductId);
                 return View(order);
             }
         }

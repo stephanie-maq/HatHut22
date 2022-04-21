@@ -26,13 +26,13 @@ namespace HatHut22.Controllers
             {
                 if (search == null || search == "")
                 {
-                    var customers = context.Customers.ToList();
+                    var customers = context.Customers.Where(x=>x.Fullname != "borttagen kund").ToList();
 
                     return View(customers);
                 }
                 if (search != null && search != "")
                 {
-                    return View(context.Customers.Where(x => x.Fullname.ToString().ToLower().Contains(search.ToLower().ToString())).ToList());
+                    return View(context.Customers.Where(x => x.Fullname != "borttagen kund").Where(x => x.Fullname.ToString().ToLower().Contains(search.ToLower().ToString())).ToList());
                 }
                 return View(context.Customers);
             }
@@ -141,6 +141,7 @@ namespace HatHut22.Controllers
         {
             using (var context = new ApplicationDbContext())
             {
+
                 if (id == null)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -164,8 +165,29 @@ namespace HatHut22.Controllers
             using (var context = new ApplicationDbContext())
             {
                 Customer customer = context.Customers.Find(id);
-                context.Customers.Remove(customer);
-                context.SaveChanges();
+                if (customer == null)
+                {
+                    return HttpNotFound();
+                }
+
+                int customerID = customer.CostumerId;
+                Customer wantedCustomer = db.Customers.Where(x => x.Fullname == "borttagen kund").FirstOrDefault();
+                var wantedOrders = db.Orders.Where(x => x.OrderCustomerId == id);
+                foreach (var item in wantedOrders)
+                {
+
+                    item.ownerOfOrder = wantedCustomer;
+                    item.OrderCustomerId = wantedCustomer.CostumerId;
+
+                    db.Entry(item).State = EntityState.Modified;
+
+
+                }
+                customer.OwnerOfOrders = null;
+                db.Entry(customer).State = EntityState.Modified;
+                db.SaveChanges();
+                db.Customers.Remove(customer);
+                db.SaveChanges();
                 return RedirectToAction("List");
             }
 
