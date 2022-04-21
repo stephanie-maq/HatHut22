@@ -2099,6 +2099,7 @@
     <Content Include="Views\Orders\SpecificOrderSummary.cshtml" />
     <Content Include="Views\Home\Statistics.cshtml" />
     <Content Include="Views\Orders\CurrentOrderSummary.cshtml" />
+    <Content Include="Views\Account\EmailNotConfirmed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -74,6 +74,7 @@ namespace HatHut22.Controllers
             {
                 return View(model);
             }
+            
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
@@ -81,7 +82,16 @@ namespace HatHut22.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    var userid = UserManager.FindByEmail(model.Email).Id;
+                    if (!UserManager.IsEmailConfirmed(userid))
+                    {
+                        var autheticationManager = HttpContext.GetOwinContext().Authentication;
+                        autheticationManager.SignOut();
+
+                        return View("EmailNotConfirmed");
+                    }
+                    else
+                        return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -91,6 +101,14 @@ namespace HatHut22.Controllers
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
             }
+        }
+
+        //
+        // GET: /Account/EmailNotConfirmed
+        [AllowAnonymous]
+        public ActionResult EmailNotConfirmed()
+        {
+            return View();
         }
 
         //
