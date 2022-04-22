@@ -233,7 +233,7 @@ namespace HatHut22.Controllers
 
             return new Rotativa.ActionAsPdf("Invoice", new { id = id })
             {
-                FileName = "SpecificOrder.pdf",
+                FileName = "Invoice.pdf",
                 Cookies = GetCooikes()
             };
         }
