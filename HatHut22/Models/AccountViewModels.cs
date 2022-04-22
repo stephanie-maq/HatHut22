@@ -6,7 +6,7 @@ namespace HatHut22.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Epost")]
         public string Email { get; set; }
     }
 
@@ -33,7 +33,7 @@ namespace HatHut22.Models
         public string Code { get; set; }
         public string ReturnUrl { get; set; }
 
-        [Display(Name = "Remember this browser?")]
+        [Display(Name = "Kom ihåg webbläsare?")]
         public bool RememberBrowser { get; set; }
 
         public bool RememberMe { get; set; }
@@ -42,44 +42,44 @@ namespace HatHut22.Models
     public class ForgotViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Epost")]
         public string Email { get; set; }
     }
 
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Epost")]
         [EmailAddress]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Lösenord")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Kom ihåg mig?")]
         public bool RememberMe { get; set; }
     }
 
     public class RegisterViewModel
     {
-        [RegularExpression(@"^[A-Öa-ö ]+$", ErrorMessage = "Names can only have letters and space")]
+        [RegularExpression(@"^[A-Öa-ö ]+$", ErrorMessage = "Namn kan bara innehålla bokstäver och mellanslag!")]
         public string Fullname { get; set; }
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Epost")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Lösenordet {0} måste vara minst {2} tecken långt.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Lösenord")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Bekräfta lösenord")]
+        [Compare("Password", ErrorMessage = "Lösenorden måste matcha.")]
         public string ConfirmPassword { get; set; }
         [Required]
         [Display (Name ="Anställnings Kod")]
@@ -90,17 +90,17 @@ namespace HatHut22.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Epost")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Lösenordet {0} måste vara minst {2} tecken långt.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Lösenord")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "Bekräfta lösenord ")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
