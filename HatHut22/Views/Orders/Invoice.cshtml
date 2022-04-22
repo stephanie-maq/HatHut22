@@ -2,17 +2,10 @@
 
 <h2>Invoice</h2>
 
-
 <div class="container-fluid">
     <div id="ui-view" data-select2-id="ui-view">
         <div>
             <div class="card">
-                <div class="card-header">
-                    Invoice
-                    <a class="btn btn-sm btn-secondary float-right mr-1 d-print-none" href="#" onclick="javascript:window.print();" data-abc="true">
-                        <i class="fa fa-print"></i>Print
-                    </a>
-                </div>
                 <div class="card-body">
                     <div class="row mb-4" style="margin-left: 10px;margin-right: 10px;">
                         <div class="col-sm-4">
@@ -32,7 +25,7 @@
                             <div>@Html.DisplayFor(model => model.Description)</div>
                             <h6 class="mb-3">Orderdate:</h6>
                             <div>@Html.DisplayFor(model => model.DateCreated)</div>
-                        </div>                      
+                        </div>
                     </div>
                 </div>
             </div>
@@ -40,6 +33,10 @@
     </div>
 </div>
 
+
+<div style="text-align:right">@Html.ActionLink("Print Order", "InvoicePdf", new { id = Model.orderId })</div>
+
 <p>
     @Html.ActionLink("Back to List", "Index")
 </p>
+

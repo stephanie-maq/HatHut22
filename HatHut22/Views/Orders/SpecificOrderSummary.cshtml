@@ -60,17 +60,6 @@
     </div>
 </div>
 
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>
-
-@*@foreach (var item in ViewBag.OrderList)
-    {
-        <span>Order description: @item.Description </span>
-        <br>
-        <span>Price sum: @item.Price </span>
-
-    }*@
 <h1> Left to pay: @ViewBag.TotalPrice</h1>
 
 @foreach (var item in ViewBag.OrderList)
@@ -78,3 +67,6 @@
     <div style="text-align:right">@Html.ActionLink("Print Order", "SpecificOrderSummaryPdf", new { id = item.orderId })</div>
 }
 
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

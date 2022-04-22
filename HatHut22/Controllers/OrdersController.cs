@@ -228,6 +228,16 @@ namespace HatHut22.Controllers
             }
         }
 
+        public ActionResult InvoicePdf(int? id)
+        {
+
+            return new Rotativa.ActionAsPdf("Invoice", new { id = id })
+            {
+                FileName = "SpecificOrder.pdf",
+                Cookies = GetCooikes()
+            };
+        }
+
 
 
         public ActionResult SpecificOrderSummary(int? id)

@@ -7,11 +7,6 @@
     <div id="ui-view" data-select2-id="ui-view">
         <div>
             <div class="card">
-                <div class="card-header">
-                    <a class="btn btn-sm btn-secondary float-right mr-1 d-print-none" href="#" onclick="javascript:window.print();" data-abc="true">
-                        <i class="fa fa-print"></i>Print
-                    </a>
-                </div>
                 <div class="card-body">
                     <div class="row mb-4" style="margin-left: 10px;margin-right: 10px;">
                         <div class="col-sm-4">
@@ -54,11 +49,13 @@
 </div>
 <h1> Left to pay: @ViewBag.TotalPrice</h1>
 
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>
 
 @foreach (var item in ViewBag.OrderList)
 {
-    <div style="text-align:right">@Html.ActionLink("Print Order", "OrderSummaryPdf", new { id = item.orderId })</div>
+    <div style="text-align:right">@Html.ActionLink("Print Order", "OrderSummaryPdf", new { id = item.OrderCustomerId })</div>
 }
+
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
