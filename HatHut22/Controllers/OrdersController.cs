@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using CVSITE21.Data;
 using Data.Models;
+using Rotativa;
 
 namespace HatHut22.Controllers
 {
@@ -83,7 +84,7 @@ namespace HatHut22.Controllers
         {
             using (var context = new ApplicationDbContext())
             {
-                if (context.Customers.ToList().Count() != 0 )
+                if (context.Customers.Where(x => x.Fullname != "borttagen kund").ToList().Count() != 0 && context.Materials.ToList().Count() != 0)
                 {
                     var productID = id;
                     var products = context.Products.FirstOrDefault(x => x.productId == productID);
@@ -93,6 +94,11 @@ namespace HatHut22.Controllers
                     ViewBag.OrderMaterialId = new SelectList(db.Materials, "MaterialId", "MaterialName");
                     ViewBag.OrderProductId = productID;
                     return View();
+                }
+                else if (context.Materials.ToList().Count() == 0)
+                {
+
+                    return RedirectToAction("Create", "Material");
                 }
                 else { return RedirectToAction("Create", "Customer"); }
             }
@@ -217,13 +223,12 @@ namespace HatHut22.Controllers
                 ViewBag.CustomerEmail = customer.Email;
                 ViewBag.CustomerName = customer.Fullname;
                 ViewBag.CustomerPhone = customer.phoneNumber;
-
-                //ViewBag.OrderEmployeeId = new SelectList(db.Employees, "EmployeeId", "Email");
-                //ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email");
-                //ViewBag.OrderProductId = productID;
+            
                 return View(order);
             }
         }
+
+
 
         public ActionResult SpecificOrderSummary(int? id)
         {
@@ -247,12 +252,31 @@ namespace HatHut22.Controllers
 
                 ViewBag.OrderList = orderList;
                 ViewBag.TotalPrice = totalPrice;
-                //ViewBag.OrderEmployeeId = new SelectList(db.Employees, "EmployeeId", "Email");
-                //ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email");
-                //ViewBag.OrderProductId = productID;
+                
                 return View();
             }
         }
+
+        public Dictionary<string, string> GetCooikes()
+        {
+            Dictionary<string, string> cookieCollection = new Dictionary<string, string>();
+            foreach (var key in Request.Cookies.AllKeys)
+            {
+                cookieCollection.Add(key, Request.Cookies.Get(key).Value);
+            }
+            return cookieCollection;
+        } 
+
+        public ActionResult SpecificOrderSummaryPdf(int? id)
+        {
+           
+            return new Rotativa.ActionAsPdf("SpecificOrderSummary", new { id = id })
+            {
+                FileName = "SpecificOrder.pdf",
+                Cookies = GetCooikes()
+            };
+        }
+
         public ActionResult OrderSummary(int? id)
         {
             if (id == null)
@@ -269,18 +293,25 @@ namespace HatHut22.Controllers
                     {
                         totalPrice += item.Price;
 
-
                     }
                 }
 
                 ViewBag.OrderList = orderList;
                 ViewBag.TotalPrice = totalPrice;
-                //ViewBag.OrderEmployeeId = new SelectList(db.Employees, "EmployeeId", "Email");
-                //ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email");
-                //ViewBag.OrderProductId = productID;
                 return View();
             }
         }
+
+        public ActionResult OrderSummaryPdf(int? id)
+        {
+
+            return new Rotativa.ActionAsPdf("OrderSummary", new { id = id })
+            {
+                FileName = "OrderSummary.pdf",
+                Cookies = GetCooikes()
+            };
+        }
+
         public ActionResult CurrentOrderSummary(int? id)
         {
             if (id == null)
@@ -303,12 +334,20 @@ namespace HatHut22.Controllers
 
                 ViewBag.OrderList = orderList;
                 ViewBag.TotalPrice = totalPrice;
-                //ViewBag.OrderEmployeeId = new SelectList(db.Employees, "EmployeeId", "Email");
-                //ViewBag.OrderCustomerId = new SelectList(db.Customers, "CostumerId", "Email");
-                //ViewBag.OrderProductId = productID;
                 return View();
             }
         }
+
+        public ActionResult CurrentOrderSummaryPdf(int? id)
+        {
+
+            return new Rotativa.ActionAsPdf("CurrentOrderSummary", new { id = id })
+            {
+                FileName = "CurrentOrderSummary.pdf",
+                Cookies = GetCooikes()
+            };
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
