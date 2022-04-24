@@ -87,6 +87,7 @@ namespace HatHut22.Controllers
                     {
                         var autheticationManager = HttpContext.GetOwinContext().Authentication;
                         autheticationManager.SignOut();
+                        AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
 
                         return View("EmailNotConfirmed");
                     }
