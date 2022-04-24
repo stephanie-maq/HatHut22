@@ -9,9 +9,12 @@ namespace Data.Models
 {
     public class Material
     {
-        [Key] public int MaterialId { get; set; }
-        [RegularExpression(@"^[A-Öa-ö ]+$", ErrorMessage = "Names can only have letters and space")]
+        [Key] 
+        public int MaterialId { get; set; }
+        [Display(Name = "Material namn")]
+        [RegularExpression(@"^[A-Öa-ö ]+$", ErrorMessage = "Namn kan bara bestå av bokstäver och mellanslag.")]
         public string MaterialName { get; set; }
+        [Display(Name = "Ordrar med materialet")]
         public ICollection<Order> MaterialOfOrders { get; set; }
     }
 }

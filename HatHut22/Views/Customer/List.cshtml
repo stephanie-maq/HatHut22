@@ -1,20 +1,20 @@
 ﻿@model IEnumerable<Data.Models.Customer>
 
 @{
-    ViewBag.Title = "List";
+    ViewBag.Title = "Kundlista";
 }
 
-<h2>List</h2>
+<h2>Kundlista</h2>
 
 <a href="~/Customer/Create" class="btn btn-primary btn-lg"><i class="fa-solid fa-circle-plus"></i> Ny kund</a>
 <p>
     @using (@Html.BeginForm("List", "Customer", FormMethod.Get))
     {
-        <b>Search by name:</b>
+        <b>Sök med namn:</b>
 
         <div>
             @Html.TextBox("search")
-            <input class="btn btn-default" type="submit" value="search" />
+            <input class="btn btn-default" type="submit" value="sök" />
         </div>
 
 
@@ -43,9 +43,9 @@
                     @Html.DisplayFor(modelItem => item.Fullname)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.CostumerId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.CostumerId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.CostumerId })
+                    @Html.ActionLink("Redigera", "Edit", new { id = item.CostumerId }) |
+                    @Html.ActionLink("Detaljer", "Details", new { id = item.CostumerId }) |
+                    @Html.ActionLink("Ta bort", "Delete", new { id = item.CostumerId })
                 </td>
             </tr>
         }

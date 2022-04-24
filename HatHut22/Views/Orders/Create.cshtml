@@ -1,10 +1,10 @@
 ﻿@model Data.Models.Order
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Skapa beställning";
 }
 
-<h2>Skapa</h2>
+<h2>Skapa beställning</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,7 +12,6 @@
     @Html.AntiForgeryToken()
     
 <div class="form-horizontal">
-    <h4>Order</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
@@ -81,7 +80,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.OrderMaterialId, "Material", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.OrderMaterialId, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownList("OrderMaterialId", null, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.OrderMaterialId, "", new { @class = "text-danger" })
@@ -89,7 +88,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.OrderCustomerId, "Customer", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.OrderCustomerId, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownList("OrderCustomerId", null, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.OrderCustomerId, "", new { @class = "text-danger" })
@@ -97,7 +96,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.OrderProductId, "Product ID for " + (string)ViewBag.ProductTitle + " =", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.OrderProductId, "Produkt ID för " + (string)ViewBag.ProductTitle + " =", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.OrderProductId, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.OrderProductId, @readonly = "readonly" } })
             @Html.ValidationMessageFor(model => model.OrderProductId, "", new { @class = "text-danger" })
@@ -106,14 +105,14 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+            <input type="submit" value="Skapa beställning" class="btn btn-default" />
         </div>
     </div>
 </div>
 }
 
 <div>
-    @Html.ActionLink("Tillbaka", "Index")
+    @Html.ActionLink("Tillbaka till produktlistan", "Index", "Products", new {  }, null)
 </div>
 
 @section Scripts {

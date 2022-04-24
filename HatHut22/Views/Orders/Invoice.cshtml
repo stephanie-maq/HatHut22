@@ -1,6 +1,6 @@
 ﻿@model Data.Models.Order
 
-<h2>Invoice</h2>
+<h2>Adressetikett</h2>
 
 <div class="container-fluid">
     <div id="ui-view" data-select2-id="ui-view">
@@ -34,9 +34,10 @@
 </div>
 
 
-<div style="text-align:right">@Html.ActionLink("Print Order", "InvoicePdf", new { id = Model.orderId })</div>
+<div style="text-align:right">@Html.ActionLink("Skriv ut etikett", "InvoicePdf", new { id = Model.orderId })</div>
 
 <p>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Tillbaka till listan", "Index") | <br />
+    @Html.ActionLink("Tillbaka till beställnings detaljer", "Details", new { id = Model.orderId })
 </p>
 

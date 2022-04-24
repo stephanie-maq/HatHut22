@@ -4,13 +4,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Orders</h2>
+<h2>Beställningar</h2>
 
 <div>
 
     @using (@Html.BeginForm("Index", "Orders", FormMethod.Get))
     {
-        <div><b>Sort By:</b></div>
+        <div><b>Sortera på:</b></div>
         <div>
             <div>@Html.RadioButton("searchBy", "Alla Ordrar", true)<text>Alla Ordrar</text></div>
             <div>@Html.RadioButton("searchBy", "Betalda Ordrar")<text>Betalda Ordrar</text></div>
@@ -19,7 +19,7 @@
 
 
         <div>
-            <input class="btn btn-default" type="submit" value="Filter" />
+            <input class="btn btn-default" type="submit" value="Filtrera" />
         </div>
 
     }
@@ -90,9 +90,9 @@
                 </td>
             }
     <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.orderId }) |
-        @Html.ActionLink("Details", "Details", new { id = item.orderId }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.orderId })
+        @Html.ActionLink("Redigera", "Edit", new { id = item.orderId }) |
+        @Html.ActionLink("Detaljer", "Details", new { id = item.orderId }) |
+        @Html.ActionLink("Ta bort", "Delete", new { id = item.orderId })
     </td>
 </tr>
 }

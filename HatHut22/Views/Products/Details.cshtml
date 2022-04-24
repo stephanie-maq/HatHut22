@@ -1,13 +1,12 @@
 ﻿@model Data.Models.Product
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Produkt detaljer";
 }
 
-<h2>Details</h2>
+<h2>Produkt detaljer</h2>
 
 <div>
-    <h4>Product</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -69,10 +68,10 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.productId }) |
-    @Html.ActionLink("Back to List", "Index") |
+    @Html.ActionLink("Redigera", "Edit", new { id = Model.productId }) |
+    @Html.ActionLink("Tillbaka till listan", "Index") |
     <br />
-    @Html.ActionLink("Create Copy", "CreateCopy", new { id = Model.productId }) |
-    @Html.ActionLink("Create Order", "Create", "Orders", new { id = Model.productId }, null) |
+    @Html.ActionLink("Skapa produkt-kopia", "CreateCopy", new { id = Model.productId }) |
+    @Html.ActionLink("Skapa order", "Create", "Orders", new { id = Model.productId }, null) |
 
 </p>

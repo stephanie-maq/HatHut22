@@ -1,32 +1,34 @@
 ﻿@model Data.Models.StatisticsViewModel
 
 @{
-    ViewBag.Title = "Statistics";
+    ViewBag.Title = "Statistik";
 }
 
-<h2>Statistics</h2>
+<h2>Statistik</h2>
 <br />
 <br />
 
 <div>
-    <h3>Vat for @DateTime.Now.Year</h3>
-    <h4>Total VAT for orders this year: @Html.DisplayFor(model => model.TotalVAT)  </h4>
+    <h3>Moms för @DateTime.Now.Year</h3>
+    <h4>Total moms från ordrar detta år: @Html.DisplayFor(model => model.TotalVAT)  </h4>
 </div>
 <br />
 <div>
-    <h3>Sell statistics:</h3>
+    <h3>Sälj statistik:</h3>
     <table class="table">
 
-        @if (Model.Orders != null)
+        @if (Model.SorteradeOrders != null)
         {
-            foreach (var item in Model.Orders.Reverse())
+            foreach (var item in Model.SorteradeOrders)
             {
+                var antal = Model.SamtligaOrders.Where(x => x.OrderProductId == item.OrderProductId).Count();
+                var namn = Model.SamtligaProdukter.Where(x => x.productId == item.OrderProductId).FirstOrDefault().Title;
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Value)
+                        @namn
                     </td>
                     <td>
-                        Number of sold items: @Html.DisplayFor(modelItem => item.Key)
+                        Antal sålda produkter: @antal
                     </td>
 
                 </tr>

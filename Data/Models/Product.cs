@@ -11,20 +11,20 @@ namespace Data.Models
     {
         [Key]
         public int productId { get; set; }
+        [Display(Name = "Produkt namn")]
 
-        [Required(ErrorMessage = "Please enter a title for your project")]
-        [StringLength(40, MinimumLength = 2, ErrorMessage = "The title should be between {2} and {1} characters.")]
+        [Required(ErrorMessage = "Vänligen ange ett namn till produkten.")]
+        [StringLength(40, MinimumLength = 2, ErrorMessage = "Beskrivningen borde vara minst 2 tecken.")]
         public string Title { get; set; }
-
-        [Required(ErrorMessage = "Please enter a short description for your project")]
-        [StringLength(150, MinimumLength = 10, ErrorMessage = "The description should be between {2} and {1} characters.")]
+        [Display(Name = "Beskrivning")]
+        [Required(ErrorMessage = "Vänligen ange en kort beskrivning till produkten.")]
+        [StringLength(150, MinimumLength = 10, ErrorMessage = "Beskrivningen borde vara minst 10 tecken.")]
         public string Description { get; set; }
-
-        [Required(ErrorMessage = "Enter a date with the following format: mm/dd/yyyy")]
-        [Display(Name = "Start Date")]
+        [Required(ErrorMessage = "Ange ett datum med följande format: mm/dd/yyyy")]
+        [Display(Name = "Start Datum")]
         public DateTime DateCreated { get; set; }
+        [Display(Name = "Pris")]
         public int Price { get; set; }
-
         public ICollection<Order> ExistInOrders { get; set; }
         [Display(Name = "Lagerförd produkt")]
         public bool IsStockProduct { get; set; }

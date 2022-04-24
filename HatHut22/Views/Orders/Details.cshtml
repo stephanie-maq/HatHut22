@@ -4,11 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Beställnings detaljer</h2>
 @foreach (var item in Model)
 {
     <div>
-        <h4>Order</h4>
         <hr />
         <dl class="dl-horizontal">
 
@@ -34,6 +33,14 @@
 
             <dd>
                 @Html.DisplayFor(modelItem => item.productInOrder.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MaterialInOrder)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(modelItem => item.MaterialInOrder.MaterialName)
             </dd>
 
             <dt>
@@ -93,11 +100,11 @@
             </dd>
 
             <dt>
-               Material
+                Material
             </dt>
 
             <dd>
-                @ViewBag.Material 
+                @ViewBag.Material
             </dd>
 
             <div class="col">
@@ -108,7 +115,7 @@
                         var imgurl = "";
                         if (item.ImagePath == null)
                         {
-                            <p>no images</p>
+                            <p>Ingen bild inlagd</p>
                         }
                         else
                         {
@@ -124,11 +131,12 @@
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = item.orderId }) |
-        @Html.ActionLink("Back to List", "Index") |
+        @Html.ActionLink("Redigera", "Edit", new { id = item.orderId }) |
+        @Html.ActionLink("Tillbaka till listan", "Index") |
+        @Html.ActionLink("Ta bort", "Delete", new { id = item.orderId })
         <br />
-        @Html.ActionLink("Add Image", "Create", "Image", new { id = item.orderId }, null) |
-        @Html.ActionLink("Invoice", "Invoice", new { id = item.orderId }) |
+        @Html.ActionLink("Lägg till bild", "Create", "Image", new { id = item.orderId }, null) |
+        @Html.ActionLink("adressetikett", "Invoice", new { id = item.orderId }) |
         @Html.ActionLink("Beställnings sammanfattning", "SpecificOrderSummary", new { id = item.orderId })
     </p>
 }

@@ -12,10 +12,11 @@ namespace Data.Models
     {
         [Key]
         public int orderId { get; set; }
+        [Display(Name = "Beskrivning")]
         public string Description { get; set; }
 
-        [Required(ErrorMessage = "Enter a date with the following format: mm/dd/yyyy")]
-        [Display(Name = "Start Date")]
+        [Required(ErrorMessage = "Ange ett datum med följande format: mm/dd/yyyy")]
+        [Display(Name = "Start datum")]
         public DateTime DateCreated { get; set; }
         [Display(Name = "Betalad?")]
         public bool IsPaid { get; set; }
@@ -26,6 +27,7 @@ namespace Data.Models
         [Display(Name = "Finns material?")]
         public bool HaveMaterials { get; set; }
         public string ImagePath { get; set; }
+        [Display(Name = "Pris")]
         public int Price { get; set; }
         [Display(Name = "Kund")]
         public int OrderCustomerId { get; set; }

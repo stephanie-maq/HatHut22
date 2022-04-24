@@ -1,6 +1,6 @@
-﻿@model Data.Models.Order
+﻿@model Data.Models.Customer
 
-<h2>Current Order Summary</h2>
+<h2>Beställnings sammanfattning av pågående ordrar</h2>
 
 <div class="container-fluid">
     <div id="ui-view" data-select2-id="ui-view">
@@ -8,20 +8,17 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row mb-4" style="margin-left: 10px;margin-right: 10px;">
-                        <div class="col-sm-4">
-                            <div>@Html.DisplayFor(model => model.Description)</div>
-                            <div>@Html.DisplayFor(model => model.DateCreated)</div>
-                        </div>
+
                         <div class="table-responsive-sm">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>OrderID</th>
-                                        <th>Description</th>
+                                        <th>Beställnings ID</th>
+                                        <th>Beskrivning</th>
                                         <th>Hatt Betalad</th>
                                         <th>Hatt färdig</th>
                                         <th>Hatt skickad</th>
-                                        <th class="right">price</th>
+                                        <th class="right">Pris</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -46,14 +43,13 @@
         </div>
     </div>
 </div>
-<h1> Left to pay: @ViewBag.TotalPrice</h1>
+<h1> Kvar att betala: @ViewBag.TotalPrice SEK</h1>
 
-@foreach (var item in ViewBag.OrderList)
-{
-    <div style="text-align:right">@Html.ActionLink("Print Order", "CurrentOrderSummaryPdf", new { id = item.OrderCustomerId })</div>
 
-}
+<div style="text-align:right">@Html.ActionLink("Skriv ut sammanfattning", "OrderSummaryPdf", new { id = Model.CostumerId })</div>
+
+
 
 <p>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Tillbaka till kund detalj", "details", "Customer", new { id = Model.CostumerId }, null)
 </p>
