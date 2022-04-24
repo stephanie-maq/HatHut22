@@ -1,38 +1,52 @@
 ﻿@model Data.Models.Order
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Ta bort beställning";
 }
 
-<h2>Delete</h2>
+<h2>Ta bort beställning</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Är du säker på att du vill ta bort beställningen?</h3>
 <div>
-    <h4>Order</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.employeeMakingOrder.Email)
+            @Html.DisplayNameFor(model => model.employeeMakingOrder)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.employeeMakingOrder.Email)
+            @if (ViewBag.Anställd != null)
+            {
+                @ViewBag.Anställd
+            }
+            else
+            {
+                <p>Ingen aktiv anställd</p>
+            }
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ownerOfOrder.Email)
+            @Html.DisplayNameFor(model => model.ownerOfOrder)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ownerOfOrder.Email)
+            @ViewBag.Kund
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.productInOrder.Title)
+            @Html.DisplayNameFor(model => model.productInOrder)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.productInOrder.Title)
+            @ViewBag.Produkt
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaterialInOrder)
+        </dt>
+
+        <dd>
+            @ViewBag.Material
         </dd>
 
         <dt>
@@ -68,11 +82,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ImagePath)
+            @Html.DisplayNameFor(model => model.IsSent)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ImagePath)
+            @Html.DisplayFor(model => model.IsSent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HaveMaterials)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HaveMaterials)
         </dd>
 
         <dt>
@@ -89,8 +111,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Ta bort" class="btn btn-default" /> |
+            @Html.ActionLink("Tillbaka till listan", "Index")
         </div>
     }
 </div>

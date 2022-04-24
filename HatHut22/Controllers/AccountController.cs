@@ -196,7 +196,7 @@ namespace HatHut22.Controllers
                         var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                         await UserManager.SendEmailAsync(user.Id, "Confirm your account", callbackUrl);
 
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Login", "Account");
                     }
                     AddErrors(result);
                 }

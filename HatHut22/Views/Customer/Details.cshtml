@@ -1,10 +1,9 @@
 ﻿@model HatHut22.Models.TempCustomer
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Kund detaljer";
 }
 
-<h2>Details</h2>
 
 
 
@@ -18,13 +17,13 @@
                     <div class="row">
                         <div class="col">
                             <center>
-                                <h4>Customer Details</h4>
+                                <h4>Kund detaljer</h4>
                             </center>
                             <center>
-                                <p>
-                                    @Html.ActionLink("Edit", "Edit", new { id = Model.CostumerId }) |
-                                    @Html.ActionLink("Back to List", "List")
-                                </p>
+                                <h5>
+                                    @Html.ActionLink("Redigera", "Edit", new { id = Model.CostumerId }) |
+                                    @Html.ActionLink("Tillbaka till listan", "List")
+                                </h5>
 
                             </center>
                         </div>
@@ -35,7 +34,7 @@
 
                         <div class="row">
                             <center>
-                                <label>Name</label>
+                                <label>Namn</label>
                                 <div class="form-group">
                                     @Html.DisplayFor(model => model.Fullname)
                                 </div>
@@ -49,19 +48,19 @@
 
                         <div class="row, text-center">
                             <div class="col-md-3">
-                                <label class="text-center">Customer ID</label>
+                                <label class="text-center">Kund ID</label>
                                 <div class="form-group">
                                     @Html.DisplayFor(model => model.CostumerId)
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <label class="text-center">Phone number</label>
+                                <label class="text-center">Telefonnummer</label>
                                 <div class="form-group">
                                     @Html.DisplayFor(model => model.phoneNumber)
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <label class="text-center">Email</label>
+                                <label class="text-center">Epost</label>
                                 <div class="form-group">
                                     @Html.DisplayFor(model => model.Email)
                                 </div>
@@ -94,7 +93,7 @@
                     <div class="row">
                         <div class="col">
                             <center>
-                                <h4>Order List</h4>
+                                <h4>Kundens beställnings lista</h4>
                             </center>
                         </div>
                     </div>
@@ -125,7 +124,7 @@
                     <div class="row">
                         <div class="col">
                             <center>
-                                <h4>Notes</h4>
+                                <h4>Anteckningar</h4>
                             </center>
                         </div>
                     </div>

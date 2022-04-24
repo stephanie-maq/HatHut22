@@ -4,18 +4,18 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Material</h2>
+<div class="buttonMargin">
+    <a href="~/Material/Create" class="btn btn-primary btn-lg"><i class="fa-solid fa-circle-plus"></i>Lägg till material</a>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.MaterialName)
         </th>
         <th>
-            Orders needing materials:
+            Antal ordrar som behöver material:
         </th>
         <th>
             Sätt som beställd:
@@ -49,7 +49,7 @@
         </td>
     }
     <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.MaterialId }) 
+        @Html.ActionLink("Redigera", "Edit", new { id = item.MaterialId }) 
     </td>
 </tr>
 }

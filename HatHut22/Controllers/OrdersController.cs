@@ -66,15 +66,11 @@ namespace HatHut22.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                var order = context.Orders.Where(x=>x.orderId == id).Include(o => o.employeeMakingOrder).Include(o => o.ownerOfOrder).Include(o => o.productInOrder);
+                var order = context.Orders.Where(x=>x.orderId == id).Include(o => o.employeeMakingOrder).Include(o => o.ownerOfOrder).Include(o => o.productInOrder).Include(o => o.MaterialInOrder);
                 if (order == null)
                 {
                     return HttpNotFound();
                 }
-                Order ordern = order.FirstOrDefault(x => x.orderId == id);
-                var MaterialID = ordern.OrderMaterialId;
-                Material currentMatrial = context.Materials.FirstOrDefault(x => x.MaterialId == MaterialID);
-                ViewBag.Material = currentMatrial.MaterialName;
                 return View(order.ToList());
             }
         }
@@ -186,6 +182,11 @@ namespace HatHut22.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Order order = db.Orders.Find(id);
+            var ordern = db.Orders.Where(x => x.orderId == id).Include(o => o.employeeMakingOrder).Include(o => o.ownerOfOrder).Include(o => o.productInOrder).Include(o => o.MaterialInOrder).FirstOrDefault();
+            ViewBag.Anställd = ordern.employeeMakingOrder.Fullname;
+            ViewBag.Kund = ordern.ownerOfOrder.Fullname;
+            ViewBag.Produkt = ordern.productInOrder.Title;
+            ViewBag.Material = ordern.MaterialInOrder.MaterialName;
             if (order == null)
             {
                 return HttpNotFound();
@@ -296,6 +297,7 @@ namespace HatHut22.Controllers
             var totalPrice = 0;
             using (var context = new ApplicationDbContext())
             {
+                Customer customer = db.Customers.Find(id);
                 var orderList = db.Orders.Where(x => x.OrderCustomerId == id);
                 foreach (var item in orderList)
                 {
@@ -308,7 +310,7 @@ namespace HatHut22.Controllers
 
                 ViewBag.OrderList = orderList;
                 ViewBag.TotalPrice = totalPrice;
-                return View();
+                return View(customer);
             }
         }
 
@@ -331,6 +333,7 @@ namespace HatHut22.Controllers
             var totalPrice = 0;
             using (var context = new ApplicationDbContext())
             {
+                Customer customer = db.Customers.Find(id);
                 var orderList = db.Orders.Where(x => x.OrderCustomerId == id).Where(x => x.IsSent == false);
                 foreach (var item in orderList)
                 {
@@ -344,7 +347,7 @@ namespace HatHut22.Controllers
 
                 ViewBag.OrderList = orderList;
                 ViewBag.TotalPrice = totalPrice;
-                return View();
+                return View(customer);
             }
         }
 

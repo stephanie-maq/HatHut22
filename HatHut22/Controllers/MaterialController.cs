@@ -29,11 +29,7 @@ namespace HatHut22.Controllers
             }
         }
 
-        // GET: Material/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+
 
         // GET: Material/Create
         public ActionResult Create()
@@ -57,23 +53,29 @@ namespace HatHut22.Controllers
         // GET: Material/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Material material = db.Materials.Find(id);
+            if (material == null)
+            {
+                return HttpNotFound();
+            }
+            return View(material);
         }
 
         // POST: Material/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit([Bind(Include = "materialID,MaterialName")] Material material)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                db.Entry(material).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(material);
         }
 
         // GET: Material/Delete/5

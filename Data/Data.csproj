@@ -177,6 +177,7 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\SaveImage.cs" />
+    <Compile Include="Models\orderProductCount.cs" />
     <Compile Include="Models\StatisticsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

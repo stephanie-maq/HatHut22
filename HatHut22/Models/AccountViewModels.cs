@@ -111,7 +111,7 @@ namespace HatHut22.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Epost adress")]
         public string Email { get; set; }
     }
 }

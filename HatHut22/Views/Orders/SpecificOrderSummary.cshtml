@@ -1,6 +1,6 @@
 ﻿@model Data.Models.Order
 
-<h2>Order Summary</h2>
+<h2>Beställnings sammanfattning</h2>
 
 
 <div class="container-fluid">
@@ -28,12 +28,12 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Item</th>
-                                        <th>Description</th>
+                                        <th>Order</th>
+                                        <th>Beskrivning</th>
                                         <th>Hatt Betalad</th>
                                         <th>Hatt färdig</th>
                                         <th>Hatt skickad</th>
-                                        <th class="right">price</th>
+                                        <th class="right">Pris</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -60,13 +60,13 @@
     </div>
 </div>
 
-<h1> Left to pay: @ViewBag.TotalPrice</h1>
+<h1> Kvar att betala: @ViewBag.TotalPrice SEK</h1>
 
 @foreach (var item in ViewBag.OrderList)
 {
-    <div style="text-align:right">@Html.ActionLink("Print Order", "SpecificOrderSummaryPdf", new { id = item.orderId })</div>
+    <div style="text-align:right">@Html.ActionLink("Skriv ut sammanfattning", "SpecificOrderSummaryPdf", new { id = item.orderId })</div>
 }
 
 <p>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Tillbaka till listan", "Index")
 </p>

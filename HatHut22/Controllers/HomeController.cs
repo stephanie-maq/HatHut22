@@ -43,16 +43,29 @@ namespace HatHut22.Controllers
                         .Select(order => order.Price)
                         .Sum() * 0.25;
 
-                    Dictionary<int, string> orderedProducts =
-                             db.Orders.Where(x=>x.IsPaid==true)
-                             .GroupBy(order => order.productInOrder.Title)
-                             .ToDictionary(g => g.Count(), g => g.Key);
+                    //Gör en lista av produkter
+                    var produkter = db.Products.ToList();
+                    var ordrarna = db.Orders.Where(x => x.IsPaid == true).ToList();
+                    List<Order> sorteradeOrdrar = new List<Order>();
+                    foreach (var order in ordrarna)
+                    {
+                        if (!sorteradeOrdrar.Any(x=>x.OrderProductId == order.OrderProductId))
+                        {
+                            sorteradeOrdrar.Add(order);
+                        }
+                        else { }
+                    }
+
+                    
 
                     StatisticsViewModel statistics = new StatisticsViewModel
                     {
                         TotalVAT = vat,
-                        Orders =
-                            new SortedDictionary<int, string>(orderedProducts)
+                        //Orders =
+                        //    new SortedDictionary<int, string>(orderedProducts)
+                        SorteradeOrders = sorteradeOrdrar,
+                        SamtligaOrders = ordrarna,
+                        SamtligaProdukter = produkter,
                     };
                     return View(statistics);
                 }
