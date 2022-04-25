@@ -28,13 +28,28 @@
                                         <tr>
                                             <td class="left">@item.orderId</td>
                                             <td class="left">@item.Description</td>
-                                            <td class="left">@item.IsPaid</td>
-                                            <td class="left">@item.IsHatFinnished</td>
-                                            <td class="left">@item.IsSent</td>
-                                            <td class="right">@item.Price</td>
+                                            <td class="left">
+                                                @if (item.IsPaid == true)
+                                                {<p>Betalad</p>}
+                                                else
+                                                {<p>Inte betalad</p>}
+                                        </td>
+                                        <td class="left">
+                                            @if (item.IsHatFinnished == true)
+                                            {<p>Färdig</p>}
+                                            else
+                                            {<p>Inte färdig</p>}
+                                        </td>
+                                        <td class="left">
+                                            @if (item.IsSent == true)
+                                            {<p>Skickad</p>}
+                                            else
+                                            {<p>Inte skickad</p>}
+                                        </td>
+                                        <td class="right">@item.Price</td>
 
-                                        </tr>
-                                    }
+                                    </tr>
+                                }
                                 </tbody>
                             </table>
                         </div>
