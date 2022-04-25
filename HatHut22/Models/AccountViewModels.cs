@@ -65,11 +65,14 @@ namespace HatHut22.Models
     public class RegisterViewModel
     {
         [RegularExpression(@"^[A-Öa-ö ]+$", ErrorMessage = "Namn kan bara innehålla bokstäver och mellanslag!")]
+        [Display (Name = "Namn")]
         public string Fullname { get; set; }
         [Required]
+        [RegularExpression("^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)$", ErrorMessage = "Det måste vara en giltig E-postadress")]
         [EmailAddress]
         [Display(Name = "Epost")]
         public string Email { get; set; }
+
 
         [Required]
         [StringLength(100, ErrorMessage = "Lösenordet {0} måste vara minst {2} tecken långt.", MinimumLength = 6)]

@@ -24,7 +24,8 @@
 
         <div class="form-group">
             <div class="col-md-10">
-                @Html.LabelFor(model => model.ImagePath,"Bild", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.ImagePath, "Bild", htmlAttributes: new { @class = "control-label col-md-2" })
+                <i class="fa fa-image"></i> Välj din bild<input type="file" style="display: none;" name="image">
                 <input type="file" name="Image" value="Välj din bild" />
             </div>
         </div>

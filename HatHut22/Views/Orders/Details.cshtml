@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Beställnings detaljer</h2>
+<h2>Beställningsdetaljer</h2>
 @foreach (var item in Model)
 {
     <div>
@@ -136,7 +136,7 @@
         @Html.ActionLink("Ta bort", "Delete", new { id = item.orderId })
         <br />
         @Html.ActionLink("Lägg till bild", "Create", "Image", new { id = item.orderId }, null) |
-        @Html.ActionLink("adressetikett", "Invoice", new { id = item.orderId }) |
+        @Html.ActionLink("Adressetikett", "Invoice", new { id = item.orderId }) |
         @Html.ActionLink("Beställningssammanfattning", "SpecificOrderSummary", new { id = item.orderId })
     </p>
 }
