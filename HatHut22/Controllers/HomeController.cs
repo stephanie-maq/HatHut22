@@ -86,7 +86,18 @@ namespace HatHut22.Controllers
                 
                 
             }
-            else { return View(); }
+            else {  if (db.Materials.ToList().Count() == 0)
+                {
+
+                    return RedirectToAction("Create", "Material");
+                }
+                else if(db.Customers.ToList().Count() == 0){ return RedirectToAction("Create", "Customer"); }
+                else if(db.Products.ToList().Count() == 0) { return RedirectToAction("Create", "Products"); }
+                else {
+                    var produkten = db.Products.FirstOrDefault().productId.ToString();
+                    return RedirectToAction( "Create/" + produkten, "Orders");
+                }
+            }
         }
     }
 }
