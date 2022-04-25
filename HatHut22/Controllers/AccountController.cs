@@ -196,7 +196,7 @@ namespace HatHut22.Controllers
                         // Send an email with this link
                         string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                         var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                        await UserManager.SendEmailAsync(user.Id, "Confirm your account", callbackUrl);
+                        await UserManager.SendEmailAsync(user.Id, "Bekräfta ditt konto", callbackUrl);
 
                         return RedirectToAction("Login", "Account");
                     }
@@ -260,7 +260,7 @@ namespace HatHut22.Controllers
                 // Send an email with this link
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                await UserManager.SendEmailAsync(user.Id, "Reset Password", callbackUrl);
+                await UserManager.SendEmailAsync(user.Id, "Återställ lösenord", callbackUrl);
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 

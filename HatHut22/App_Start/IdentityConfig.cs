@@ -39,15 +39,15 @@ namespace HatHut22
             string html = "";
             if (message.Body.Contains("ConfirmEmail"))
             {
-                text = string.Format("Please click on this link to {0}: {1}", message.Subject, message.Body);
-                html = "Please confirm your account by clicking this link: <a href=\"" + message.Body + "\">link</a><br/><br/><br/><br/>";
+                text = string.Format("Vänligen klicka på denna länk för att {0}: {1}", message.Subject, message.Body);
+                html = "Vänligen bekräfta ditt konto genom att klicka på denna länk: <a href=\"" + message.Body + "\">link</a><br/><br/><br/><br/>";
             }
             if (message.Body.Contains("ResetPassword"))
             {
-                text = string.Format("Please click on this link to {0}: {1}", message.Subject, message.Body);
-                html = "Please reset your password by clicking this link: <a href=\"" + message.Body + "\">link</a><br/><br/><br/><br/>";
+                text = string.Format("Vänligen klicka på denna länk för att {0}: {1}", message.Subject, message.Body);
+                html = "Återställ ditt lösenord genom att klicka på denna länk: <a href=\"" + message.Body + "\">link</a><br/><br/><br/><br/>";
             }
-            html += HttpUtility.HtmlEncode(@"Or click on the copy the following link on the browser: " + message.Body);
+            html += HttpUtility.HtmlEncode(@"Eller kopiera hela länken och klistra in den direkt i webbläsaren: " + message.Body);
             #endregion
 
             MailMessage mail = new MailMessage();
