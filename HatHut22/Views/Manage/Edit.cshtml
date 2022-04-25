@@ -4,14 +4,14 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Redigera</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Employee</h4>
+        <h4>Antsälld</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.EmployeeId)
@@ -41,5 +41,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Tillbaka", "Index")
 </div>

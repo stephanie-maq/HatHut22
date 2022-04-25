@@ -1,6 +1,6 @@
 ﻿@model Data.Models.Customer
 
-<h2>Beställnings sammanfattning av pågående ordrar</h2>
+<h2>Beställningssammanfattning av pågående ordrar</h2>
 
 <div class="container-fluid">
     <div id="ui-view" data-select2-id="ui-view">
@@ -58,7 +58,7 @@
 <h1> Kvar att betala: @ViewBag.TotalPrice SEK</h1>
 
 
-<div style="text-align:right">@Html.ActionLink("Skriv ut sammanfattning", "OrderSummaryPdf", new { id = Model.CostumerId })</div>
+<div style="text-align:right">@Html.ActionLink("Skriv ut beställningssammanfattning", "OrderSummaryPdf", new { id = Model.CostumerId })</div>
 
 
 
